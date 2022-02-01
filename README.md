@@ -1,0 +1,1 @@
+# jfddr5-kodowe-konowaly
