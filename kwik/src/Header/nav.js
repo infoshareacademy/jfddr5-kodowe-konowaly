@@ -7,7 +7,7 @@ function Nav() {
     <>
       <div className={s.banner}>
         <div className={s.logo}>
-          <img className={s.kwikLogo} alt="logo" src={kwik}></img>
+        <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           <button className={s.addKwik}>Dodaj kwika</button>
         </div>
         <div className={s.buttons}>

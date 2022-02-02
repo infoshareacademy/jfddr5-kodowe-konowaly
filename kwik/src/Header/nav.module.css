@@ -1,7 +1,7 @@
-
 * {
   font-family: Poppins;
   font-size: medium;
+  font-weight: 400;
 }
 
 body {
@@ -12,6 +12,7 @@ body {
   align-items: center;
   padding: 6px;
 }
+
 .kwikLogo {
   max-width: 50%;
   height: auto;
@@ -25,32 +26,32 @@ body {
 
 .buttons {
   display: flex;
-  justify-content:space-around;
-
+  justify-content: space-around;
 }
 
 .buttons > button {
-  background-color:#F9C74F;
+  background-color: #f9c74f;
   border: 1px solid #f9c74f;
   padding: 8px;
   box-shadow: 1px 1px 7px #f9c74f;
   margin-right: 15px;
   border-radius: 6px;
-  
+  color: rgb(49, 47, 47)
 }
 
 .buttons > button:last-of-type {
-margin-right: 0;
+  margin-right: 0;
 }
 
 .addKwik {
   font-family: Poppins;
-  background-color:#90BE6D;
-  border: 1px solid #90BE6D;
+  background-color: #90be6d;
+  border: 1px solid #90be6d;
   padding: 8px;
   margin-left: 15px;
-  box-shadow: 1px 1px 7px #90BE6D;
+  box-shadow: 1px 1px 7px #90be6d;
   border-radius: 6px;
+  color: rgb(49, 47, 47)
 }
 
 hr {
