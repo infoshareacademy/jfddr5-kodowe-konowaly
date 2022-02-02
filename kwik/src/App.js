@@ -1,3 +1,5 @@
+
+import Nav from "./Header/nav";
 import React from "react";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import MainPage from "./subpages/MainPage";
@@ -41,6 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <nav />
       <NavLink to="/">MainPage</NavLink>
       <NavLink to="/Topka">Topka</NavLink>
       <NavLink to="/Login/register">Login</NavLink>
@@ -56,5 +59,7 @@ function App() {
       <div> {renderKwik()}</div>
     </BrowserRouter>
   );
+
 }
+
 export default App;
