@@ -1,0 +1,59 @@
+
+* {
+  font-family: Poppins;
+  font-size: medium;
+}
+
+body {
+  background-color: #577590;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+.kwikLogo {
+  max-width: 50%;
+  height: auto;
+}
+.banner {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content:space-around;
+
+}
+
+.buttons > button {
+  background-color:#F9C74F;
+  border: 1px solid #f9c74f;
+  padding: 8px;
+  box-shadow: 1px 1px 7px #f9c74f;
+  margin-right: 15px;
+  border-radius: 6px;
+  
+}
+
+.buttons > button:last-of-type {
+margin-right: 0;
+}
+
+.addKwik {
+  font-family: Poppins;
+  background-color:#90BE6D;
+  border: 1px solid #90BE6D;
+  padding: 8px;
+  margin-left: 15px;
+  box-shadow: 1px 1px 7px #90BE6D;
+  border-radius: 6px;
+}
+
+hr {
+  border: 1px solid #f9c74f;
+  box-shadow: 8px 3px 6px #f9c74f;
+}

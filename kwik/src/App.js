@@ -1,9 +1,7 @@
-import nav 
-
-
+import Nav from "./Header/nav";
 
 function App() {
-  return <nav />;
+  return <Nav />;
 }
 
 export default App;
