@@ -1,8 +1,9 @@
+import nav 
+
+
 
 function App() {
-  return (
-   <div></div> 
-  );
+  return <nav />;
 }
 
 export default App;
