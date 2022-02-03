@@ -7,7 +7,41 @@ import Top from "./subpages/Top";
 import Waitingroom from "./subpages/Waitingroom";
 import { LoginRegister } from "./subpages/LoginRegister";
 
+import { collection, getDocs, doc } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import db from "./db";
+
 function App() {
+  const [Kwik, setKwik] = useState([]);
+  
+
+
+  const getKwik = async () => {
+    const KwikCollection = collection(db, "Kwik");
+    const KwikDocuments = await getDocs(KwikCollection);
+
+    const KwikList = KwikDocuments.docs.map((doc) => ({
+      id: doc.id ,
+      data: doc.data(),
+    }));
+
+    setKwik(KwikList);
+  };
+
+  useEffect(() => {
+    getKwik();
+  }, []);
+
+  const renderKwik = () =>
+    Kwik.map((KwikElement) => (
+      <div key={KwikElement.id}>
+        <div>{KwikElement.data.Title}</div>
+        <img style={{ width: "400px" }} src={KwikElement.data.URL} />
+        <hr />
+      </div>
+    ));
+  console.log(Kwik);
+
   return (
     <BrowserRouter>
       <Nav />
@@ -19,7 +53,7 @@ function App() {
         <Route path="/Login" element={<LoginRegister />} />
         <Route path="/Register" element={<LoginRegister />} />
       </Routes>
+      <div> {renderKwik()}</div>
     </BrowserRouter>
   );
-}
 export default App;
