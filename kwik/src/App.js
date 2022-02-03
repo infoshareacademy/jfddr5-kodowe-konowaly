@@ -14,13 +14,15 @@ import db from "./db";
 
 function App() {
   const [Kwik, setKwik] = useState([]);
+  
+
 
   const getKwik = async () => {
     const KwikCollection = collection(db, "Kwik");
     const KwikDocuments = await getDocs(KwikCollection);
 
     const KwikList = KwikDocuments.docs.map((doc) => ({
-      id: doc.id,
+      id: doc.id ,
       data: doc.data(),
     }));
 
@@ -43,7 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <nav />
+    <Nav />
       <NavLink to="/">MainPage</NavLink>
       <NavLink to="/Topka">Topka</NavLink>
       <NavLink to="/Login/register">Login</NavLink>
@@ -51,7 +53,7 @@ function App() {
       <NavLink to="/AddKwik">Dodaj Kwika</NavLink>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme />} />
+        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
         <Route path="/Topka" element={<Top />} />
         <Route path="/Poczekalnia" element={<Waitingroom />} />
         <Route path="/Login/register" element={<LoginRegister />} />
