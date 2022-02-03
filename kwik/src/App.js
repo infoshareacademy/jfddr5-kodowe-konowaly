@@ -1,4 +1,3 @@
-
 import Nav from "./Header/nav";
 import React from "react";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
@@ -45,23 +44,16 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Nav />
-      <NavLink to="/">MainPage</NavLink>
-      <NavLink to="/Topka">Topka</NavLink>
-      <NavLink to="/Login/register">Login</NavLink>
-      <NavLink to="/Poczekalnia">Poczekalnia</NavLink>
-      <NavLink to="/AddKwik">Dodaj Kwika</NavLink>
+      <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
-        <Route path="/Topka" element={<Top />} />
-        <Route path="/Poczekalnia" element={<Waitingroom />} />
-        <Route path="/Login/register" element={<LoginRegister />} />
+        <Route path="/AddKwik" element={<Addmeme />} />
+        <Route path="/Top" element={<Top />} />
+        <Route path="/WaitingRoom" element={<Waitingroom />} />
+        <Route path="/Login" element={<LoginRegister />} />
+        <Route path="/Register" element={<LoginRegister />} />
       </Routes>
       <div> {renderKwik()}</div>
     </BrowserRouter>
   );
-
-}
-
 export default App;
