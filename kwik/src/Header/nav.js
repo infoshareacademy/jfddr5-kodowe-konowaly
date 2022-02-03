@@ -7,14 +7,17 @@ function Nav() {
     <>
       <div className={s.banner}>
         <div className={s.logo}>
-        <img className={s.kwikLogo} alt="logo" src={kwik}></img>
-          <button className={s.addKwik}>Dodaj kwika</button>
+          <NavLink to="/">
+            <img className={s.kwikLogo} alt="logo" src={kwik}></img>
+          </NavLink>
+          <NavLink to="/AddKwik">
+            <button className={s.addKwik}>Dodaj kwika</button>
+          </NavLink>
         </div>
         <div className={s.buttons}>
-          <button>Topka</button>
-          <button>Poczekalnia</button>
-          <button>Logowanie</button>
-          <button>Rejestracja</button>
+          <NavLink to="/Top">Top</NavLink>
+          <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
+          <NavLink to="/Login/register">Logowanie/Rejestracja</NavLink>
         </div>
       </div>
       <hr></hr>

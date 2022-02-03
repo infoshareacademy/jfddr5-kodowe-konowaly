@@ -29,14 +29,15 @@ body {
   justify-content: space-around;
 }
 
-.buttons > button {
+.buttons > a {
   background-color: #f9c74f;
   border: 1px solid #f9c74f;
   padding: 8px;
   box-shadow: 1px 1px 7px #f9c74f;
   margin-right: 15px;
   border-radius: 6px;
-  color: rgb(49, 47, 47)
+  color: rgb(49, 47, 47);
+  text-decoration: none;
 }
 
 .buttons > button:last-of-type {
