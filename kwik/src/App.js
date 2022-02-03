@@ -16,7 +16,8 @@ function App() {
         <Route path="/AddKwik" element={<Addmeme />} />
         <Route path="/Top" element={<Top />} />
         <Route path="/WaitingRoom" element={<Waitingroom />} />
-        <Route path="/Login/register" element={<LoginRegister />} />
+        <Route path="/Login" element={<LoginRegister />} />
+        <Route path="/Register" element={<LoginRegister />} />
       </Routes>
     </BrowserRouter>
   );

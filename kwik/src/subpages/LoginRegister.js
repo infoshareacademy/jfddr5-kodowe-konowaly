@@ -1,24 +1,30 @@
+import s from "./LoginRegister.module.css";
+
 export const LoginRegister = () => {
   return (
-    <div>
-      <div>
-        <h1>Logowanie</h1>
-        <input type="text" placeholder="Nazwa Użytkownika" />
-        <input type="password" />
-        <button>Nie pamietam Hasła</button>
-        <button>Zaloguj</button>
+    <div className={s.form}>
+      <div className={s.loginForm}>
+        <h1 className={s.headings}>Logowanie</h1>
+        <input className={s.basicInput} type="text" placeholder="Nazwa Użytkownika" />
+        <input className={s.basicInput} type="password" placeholder="Hasło" />
+        <button type="login" className={s.loginButton}>
+          Zaloguj
+        </button>
+        <br></br>
+        <a href="">Nie pamietam hasła</a>
       </div>
-
-      <div>
-        <h1>Rejestracja</h1>
-        <input type="text" />
-        <input type="email" />
-        <input type="password" />
-        <input type="checkbox" id="check" />
-        <label for="check">
-          Przeczytałem i akceptuję regulaminy oraz politykę prywatności
-        </label>
-        <button>Zarejestruj sie </button>
+      <div className={s.registerForm}>
+        <h1 className={s.headings}>Rejestracja</h1>
+        <input className={s.basicInput} type="username" placeholder="Nazwa Użytkownika" />
+        <input className={s.basicInput} type="email" placeholder="Email" />
+        <input className={s.basicInput}  type="password" placeholder="Hasło" />
+        <div className={s.checkbox}>
+          <input type="checkbox" id="check" name="check" />
+          <label for="check">
+            Przeczytałem i akceptuję regulamin oraz politykę prywatności
+          </label>
+        </div>
+        <button className={s.registerButton}>Zarejestruj się </button>
       </div>
     </div>
   );

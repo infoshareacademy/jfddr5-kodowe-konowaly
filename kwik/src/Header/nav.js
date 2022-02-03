@@ -17,7 +17,8 @@ function Nav() {
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-          <NavLink to="/Login/register">Logowanie/Rejestracja</NavLink>
+          <NavLink to="/Login">Logowanie</NavLink>
+          <NavLink to="/Register">Rejestracja</NavLink>
         </div>
       </div>
       <hr></hr>
