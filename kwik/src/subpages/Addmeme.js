@@ -8,6 +8,9 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
+import s from "./AddMeme.module.css";
+
+
 function Addmeme({ fetchKwik }) {
   const [title, setTitle] = useState("");
   const [kwik, setKwik] = useState("");
@@ -65,12 +68,14 @@ function Addmeme({ fetchKwik }) {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
+
           addDoc(collection(db, "Kwik"), {
             Title: title,
             URL: downloadURL,
             NameTag: nameTag,
             Votes: 0,
           }).then(fetchKwik);
+
         });
       }
     );
@@ -85,23 +90,37 @@ function Addmeme({ fetchKwik }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={(e) => setKwik(e.target.files[0])} />
 
-        <input
-          type="text"
-          placeholder="Tytuł"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="#tagi"
-          value={nameTag}
-          onChange={(e) => setNameTag(e.target.value)}
-        />
-        <button type="submit">Publikuj</button>
+    <div className={s.formForMemesAdding}>
+      <form className={s.addMemeForm} onSubmit={handleSubmit}>
+        <h1 className={s.headings}>Dodaj Kwika</h1>
+        <div className={s.titleAndtagsForm}>
+          <input
+            className={s.basicInput}
+            type="text"
+            placeholder="Tytuł"
+            value={Title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <input
+            className={s.basicInput}
+            type="text"
+            placeholder="#tagi"
+            value={NameTag}
+            onChange={(e) => setNameTag(e.target.value)}
+          />
+
+          <input
+            className={s.fileInput}
+            type="file"
+            onChange={(e) => setKwik(e.target.files[0])}
+          />
+        </div>
+        <button className={s.publishButton} type="submit">
+          Publikuj
+        </button>
+
       </form>
     </div>
   );
