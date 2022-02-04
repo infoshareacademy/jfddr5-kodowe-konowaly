@@ -6,7 +6,7 @@
 .headings {
   text-decoration: underline;
   font-size: larger;
-} 
+}
 
 .loginForm {
   display: flex;
@@ -46,8 +46,8 @@ a {
   border: 1px solid #577590;
 }
 .checkbox {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .registerButton {
   width: 50%;
@@ -67,4 +67,177 @@ a {
   margin: 7px;
   padding: 5px;
   border: 1px solid #577590;
+}
+
+@media (max-width: 1080px) {
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+}
+
+@media (max-width: 640px) {
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+}
+
+@media (max-width: 450px) {
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerForm {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 38%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerButton {
+    font-size: 15px;
+    width: 70%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: px;
+    border: 1px solid #577590;
+  }
+
+  .loginButton {
+    font-size: 15px;
+    width: 50%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: 5px;
+    border: 1px solid #577590;
+  }
+  .basicInput {
+    font-size: 11px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 12px;
+    background-color: #b3c3d1;
+    border: 1px solid #577590;
+  }
+  .checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 46%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerForm {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px;
+    width: 46%;
+    text-align: center;
+    border-radius: 6px;
+    gap: 4px;
+    background-color: #8ca5ba;
+  }
+
+  .registerButton {
+    font-size: 15px;
+    width: 70%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: px;
+    border: 1px solid #577590;
+  }
+
+  .loginButton {
+    font-size: 15px;
+    width: 50%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: 5px;
+    border: 1px solid #577590;
+  }
+  .basicInput {
+    font-size: 10px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 13px;
+    background-color: #b3c3d1;
+    border: 1px solid #577590;
+  }
+  .checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
