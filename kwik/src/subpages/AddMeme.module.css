@@ -1,3 +1,4 @@
+
 .formForMemesAdding {
   display: flex;
   justify-content: center;
@@ -54,4 +55,174 @@
 
 input:focus {
   outline-color: #577590;
+}
+
+@media (max-width: 640px) {
+
+ .addMemeForm {
+  margin: 10px;
+  width: 100%;
+
+}
+
+.titleAndtagsForm {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  gap: 4px;
+  background-color: #8ca5ba;
+  margin: 0 auto;
+}
+
+.publishButton {
+  width: 50%;
+  align-self: center;
+  border-radius: 6px;
+  background-color: #f9c74f;
+  margin: 7px;
+  padding: 5px;
+  border: 1px solid #577590;
+}
+.basicInput {
+  align-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #b3c3d1;
+  border: 1px solid #577590;
+}
+
+.fileInput {
+  margin: 0 auto;
+}
+}
+
+
+@media (max-width: 1080px) {
+
+ .addMemeForm {
+  margin: 10px;
+  width: 100%;
+
+}
+
+.titleAndtagsForm {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  gap: 4px;
+  background-color: #8ca5ba;
+  margin: 0 auto;
+}
+
+.publishButton {
+  width: 50%;
+  align-self: center;
+  border-radius: 6px;
+  background-color: #f9c74f;
+  margin: 7px;
+  padding: 5px;
+  border: 1px solid #577590;
+}
+.basicInput {
+  align-content: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #b3c3d1;
+  border: 1px solid #577590;
+}
+
+.fileInput {
+  margin: 0 auto;
+}
+}
+
+
+
+@media (max-width: 450px) {
+
+ .addMemeForm {
+  margin: 10px;
+  width: 80%;
+}
+
+.titleAndtagsForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  gap: 4px;
+  background-color: #8ca5ba;
+  margin: 0 auto;
+}
+
+.publishButton {
+  width: 100%;
+  align-self: center;
+  border-radius: 6px;
+  background-color: #f9c74f;
+  margin: 7px;
+  padding: 5px;
+  border: 1px solid #577590;
+}
+.basicInput {
+  align-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #b3c3d1;
+  border: 1px solid #577590;
+}
+
+.fileInput {
+  margin: 0 auto;
+  width: 70%;
+}
+}
+
+
+
+@media (max-width: 360px) {
+
+ .addMemeForm {
+  margin: 10px;
+  width: 100%;
+
+}
+
+.titleAndtagsForm {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  gap: 4px;
+  background-color: #8ca5ba;
+  margin: 0 auto;
+}
+
+.publishButton {
+  width: 50%;
+  align-self: center;
+  border-radius: 6px;
+  background-color: #f9c74f;
+  margin: 7px;
+  padding: 5px;
+  border: 1px solid #577590;
+}
+.basicInput {
+  align-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #b3c3d1;
+  border: 1px solid #577590;
+}
+
+.fileInput {
+  width: 90%;
+  margin: 0 auto;
+}
 }
