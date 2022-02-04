@@ -59,3 +59,91 @@ hr {
   border: 1px solid #f9c74f;
   box-shadow: 8px 3px 6px #f9c74f;
 }
+
+@media only screen and (max-width: 640px) {
+  .kwikLogo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  * {
+    font-family: Poppins;
+    font-size: small;
+    font-weight: 400;
+  }
+
+  .addKwik {
+    font-family: Poppins;
+    font-size: small;
+    background-color: #90be6d;
+    border: 1px solid #90be6d;
+    padding: 1px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 7px #90be6d;
+    border-radius: 6px;
+    color: rgb(49, 47, 47);
+  }
+  .banner {
+    display: flex;
+    font-size: small;
+    justify-content: space-between;
+    margin: 10px;
+    align-items: center;
+  }
+
+  .buttons > a {
+    background-color: #f9c74f;
+    border: 1px solid #f9c74f;
+    padding: 2px;
+    box-shadow: 1px 1px 7px #f9c74f;
+    margin-right: 10px;
+    border-radius: 6px;
+    color: rgb(49, 47, 47);
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .kwikLogo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  * {
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .addKwik {
+    font-size: 10px;
+    font-family: Poppins;
+    background-color: #90be6d;
+    border: 1px solid #90be6d;
+    padding: 1px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 7px #90be6d;
+    border-radius: 6px;
+    color: rgb(49, 47, 47);
+  }
+  .banner {
+    font-size: 10px;
+    display: flex;
+    font-size: small;
+    justify-content: space-between;
+    margin: 10px;
+    align-items: center;
+  }
+
+  .buttons > a {
+    background-color: #f9c74f;
+    border: 1px solid #f9c74f;
+    padding: 2px;
+    box-shadow: 1px 1px 7px #f9c74f;
+    margin-right: 10px;
+    border-radius: 6px;
+    color: rgb(49, 47, 47);
+    text-decoration: none;
+    font-size: 10px;
+  }
+}
