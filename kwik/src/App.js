@@ -13,15 +13,13 @@ import db from "./db";
 
 function App() {
   const [Kwik, setKwik] = useState([]);
-  
-
 
   const getKwik = async () => {
     const KwikCollection = collection(db, "Kwik");
     const KwikDocuments = await getDocs(KwikCollection);
 
     const KwikList = KwikDocuments.docs.map((doc) => ({
-      id: doc.id ,
+      id: doc.id,
       data: doc.data(),
     }));
 
@@ -56,4 +54,5 @@ function App() {
       <div> {renderKwik()}</div>
     </BrowserRouter>
   );
+}
 export default App;

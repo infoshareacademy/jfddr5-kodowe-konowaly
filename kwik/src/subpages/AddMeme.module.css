@@ -1,0 +1,57 @@
+.formForMemesAdding {
+  display: flex;
+  justify-content: center;
+}
+.headings {
+  text-decoration: underline;
+  font-size: larger;
+  align-content: center;
+}
+
+.addMemeForm {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 10px;
+  width: 35%;
+  text-align: center;
+  border-radius: 6px;
+  gap: 4px;
+  background-color: #8ca5ba;
+}
+
+.titleAndtagsForm {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  gap: 4px;
+  background-color: #8ca5ba;
+  margin: 0 auto;
+}
+
+.publishButton {
+  width: 50%;
+  align-self: center;
+  border-radius: 6px;
+  background-color: #f9c74f;
+  margin: 7px;
+  padding: 5px;
+  border: 1px solid #577590;
+}
+.basicInput {
+  align-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #b3c3d1;
+  border: 1px solid #577590;
+}
+
+.fileInput {
+  margin: 0 auto;
+}
+
+input:focus {
+  outline-color: #577590;
+}

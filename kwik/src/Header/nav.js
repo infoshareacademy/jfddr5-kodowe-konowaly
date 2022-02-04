@@ -10,8 +10,7 @@ function Nav() {
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
-          <NavLink to="/AddKwik">
-            <button className={s.addKwik}>Dodaj kwika</button>
+          <NavLink to="/AddKwik" className={s.addKwik}>Dodaj kwika
           </NavLink>
         </div>
         <div className={s.buttons}>
