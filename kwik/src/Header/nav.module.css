@@ -37,7 +37,9 @@ body {
   margin-right: 15px;
   border-radius: 6px;
   color: rgb(49, 47, 47);
+
   text-decoration: none;
+
 }
 
 .buttons > button:last-of-type {
@@ -53,7 +55,9 @@ body {
   box-shadow: 1px 1px 7px #90be6d;
   border-radius: 6px;
   color: rgb(49, 47, 47);
+
   white-space: nowrap;
+
 }
 
 hr {

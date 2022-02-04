@@ -6,39 +6,72 @@ import Addmeme from "./subpages/Addmeme";
 import Top from "./subpages/Top";
 import Waitingroom from "./subpages/Waitingroom";
 import { LoginRegister } from "./subpages/LoginRegister";
-
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
+import up from "./img/up.png";
+import down from "./img/down.png";
 
 function App() {
-  const [Kwik, setKwik] = useState([]);
+
+  const [kwikArray, setKwikArray] = useState([]);
+
 
   const getKwik = async () => {
-    const KwikCollection = collection(db, "Kwik");
-    const KwikDocuments = await getDocs(KwikCollection);
+    const kwikCollection = collection(db, "Kwik");
+    const kwikDocuments = await getDocs(kwikCollection);
 
-    const KwikList = KwikDocuments.docs.map((doc) => ({
+
+    const kwikList = kwikDocuments.docs.map((doc) => ({
+
       id: doc.id,
       data: doc.data(),
     }));
 
-    setKwik(KwikList);
+    setKwikArray(kwikList);
   };
 
   useEffect(() => {
     getKwik();
   }, []);
 
+  const incrementVotes = (id) => {
+    const kwik = kwikArray.find((kwik) => kwik.id === id);
+    const ref = doc(db, "Kwik", id);
+    updateDoc(ref, {
+      Votes: kwik.data.Votes + 1,
+    }).then(getKwik);
+  };
+
+  const decrementVotes = (id) => {
+    const kwik = kwikArray.find((kwik) => kwik.id === id);
+    const ref = doc(db, "Kwik", id);
+    updateDoc(ref, {
+      Votes: kwik.data.Votes - 1,
+    }).then(getKwik);
+  };
+
   const renderKwik = () =>
-    Kwik.map((KwikElement) => (
+    kwikArray.map((KwikElement) => (
       <div key={KwikElement.id}>
         <div>{KwikElement.data.Title}</div>
         <img style={{ width: "400px" }} src={KwikElement.data.URL} />
+        <p>{KwikElement.data.Votes}</p>
+
+        <img
+          style={{ width: "30px" }}
+          src={up}
+          onClick={() => incrementVotes(KwikElement.id)}
+        ></img>
+        <img
+          style={{ width: "30px" }}
+          src={down}
+          onClick={() => decrementVotes(KwikElement.id)}
+        ></img>
         <hr />
       </div>
     ));
-  console.log(Kwik);
+  console.log(kwikArray);
 
   return (
     <BrowserRouter>

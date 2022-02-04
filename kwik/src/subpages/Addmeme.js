@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, addDoc, collection } from "firebase/firestore";
 import db from "../db";
 import {
   getStorage,
@@ -7,16 +7,16 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+
 import s from "./AddMeme.module.css";
 
-function Addmeme({ fetchKwik }) {
-  const [Id, setId] = useState("");
-  const [Title, setTitle] = useState("");
-  const [Kwik, setKwik] = useState("");
-  const [NameTag, setNameTag] = useState("");
-  //czy w lini 12 id mozemy ustawic jako aktualny czas (data.now)
 
-  const addKwik = async (Id, Title, URL, NameTag, file) => {
+function Addmeme({ fetchKwik }) {
+  const [title, setTitle] = useState("");
+  const [kwik, setKwik] = useState("");
+  const [nameTag, setNameTag] = useState("");
+
+  const addKwik = (title, nameTag, file) => {
     const storage = getStorage();
 
     // Create the file metadata
@@ -68,11 +68,14 @@ function Addmeme({ fetchKwik }) {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
-          await setDoc(doc(db, "Kwik", Id), {
-            Title,
+
+          addDoc(collection(db, "Kwik"), {
+            Title: title,
             URL: downloadURL,
-            NameTag,
-          });
+            NameTag: nameTag,
+            Votes: 0,
+          }).then(fetchKwik);
+
         });
       }
     );
@@ -80,15 +83,14 @@ function Addmeme({ fetchKwik }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addKwik(Id, Title, "", NameTag, Kwik);
+    addKwik(title, "", nameTag, kwik);
     setTitle("");
     setKwik("");
     setNameTag("");
-    setId("");
-    fetchKwik();
   };
 
   return (
+
     <div className={s.formForMemesAdding}>
       <form className={s.addMemeForm} onSubmit={handleSubmit}>
         <h1 className={s.headings}>Dodaj Kwika</h1>
@@ -118,6 +120,7 @@ function Addmeme({ fetchKwik }) {
         <button className={s.publishButton} type="submit">
           Publikuj
         </button>
+
       </form>
     </div>
   );
