@@ -10,13 +10,12 @@ import {
 
 import s from "./AddMeme.module.css";
 
-
 function Addmeme({ fetchKwik }) {
   const [title, setTitle] = useState("");
   const [kwik, setKwik] = useState("");
   const [nameTag, setNameTag] = useState("");
 
-  const addKwik = (title, nameTag, file) => {
+  const addKwik = (title, url, nameTag, file) => {
     const storage = getStorage();
 
     // Create the file metadata
@@ -70,12 +69,11 @@ function Addmeme({ fetchKwik }) {
           console.log("File available at", downloadURL);
 
           addDoc(collection(db, "Kwik"), {
-            Title: title,
-            URL: downloadURL,
-            NameTag: nameTag,
-            Votes: 0,
+            title: title,
+            url: downloadURL,
+            nameTag: nameTag,
+            votes: 0,
           }).then(fetchKwik);
-
         });
       }
     );
@@ -90,7 +88,6 @@ function Addmeme({ fetchKwik }) {
   };
 
   return (
-
     <div className={s.formForMemesAdding}>
       <form className={s.addMemeForm} onSubmit={handleSubmit}>
         <h1 className={s.headings}>Dodaj Kwika</h1>
@@ -120,7 +117,6 @@ function Addmeme({ fetchKwik }) {
         <button className={s.publishButton} type="submit">
           Publikuj
         </button>
-
       </form>
     </div>
   );

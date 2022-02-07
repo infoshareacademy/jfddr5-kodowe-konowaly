@@ -6,24 +6,26 @@ import Addmeme from "./subpages/Addmeme";
 import Top from "./subpages/Top";
 import Waitingroom from "./subpages/Waitingroom";
 import { LoginRegister } from "./subpages/LoginRegister";
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
 import up from "./img/up.png";
 import down from "./img/down.png";
 
 function App() {
-
   const [kwikArray, setKwikArray] = useState([]);
-
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
     const kwikDocuments = await getDocs(kwikCollection);
 
-
     const kwikList = kwikDocuments.docs.map((doc) => ({
-
       id: doc.id,
       data: doc.data(),
     }));
@@ -39,7 +41,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes + 1,
+      votes: kwik.data.votes + 1,
     }).then(getKwik);
   };
 
@@ -47,26 +49,26 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes - 1,
+      votes: kwik.data.votes - 1,
     }).then(getKwik);
   };
 
   const renderKwik = () =>
-    kwikArray.map((KwikElement) => (
-      <div key={KwikElement.id}>
-        <div>{KwikElement.data.title}</div>
-        <img style={{ width: "400px" }} src={KwikElement.data.URL} />
-        <p>{KwikElement.data.Votes}</p>
+    kwikArray.map((kwikElement) => (
+      <div key={kwikElement.id}>
+        <div>{kwikElement.data.title}</div>
+        <img style={{ width: "400px" }} src={kwikElement.data.url} />
+        <p>{kwikElement.data.votes}</p>
 
         <img
           style={{ width: "30px" }}
           src={up}
-          onClick={() => incrementVotes(KwikElement.id)}
+          onClick={() => incrementVotes(kwikElement.id)}
         ></img>
         <img
           style={{ width: "30px" }}
           src={down}
-          onClick={() => decrementVotes(KwikElement.id)}
+          onClick={() => decrementVotes(kwikElement.id)}
         ></img>
         <hr />
       </div>
@@ -78,7 +80,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme />} />
+        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
         <Route path="/Top" element={<Top />} />
         <Route path="/WaitingRoom" element={<Waitingroom />} />
         <Route path="/Login" element={<LoginRegister />} />
