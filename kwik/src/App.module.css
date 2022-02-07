@@ -1,17 +1,24 @@
+.displayMeme {
+  width: fit-content;
+  margin: 0 auto;
+}
 .image {
   display: block;
   margin: 0 auto;
   border: 4px solid #f9c74f;
+  width: 70vh;
 }
 
 .titleName {
   text-align: center;
   font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .tagName {
   font-size: 20px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .votesNumber {
@@ -21,4 +28,18 @@
 .likes {
   display: flex;
   justify-content: center;
+}
+
+.thumbUp {
+  margin: 10px;
+  filter: invert(78%) sepia(5%) saturate(5043%) hue-rotate(50deg)
+    brightness(90%) contrast(86%);
+  width: 40px;
+}
+
+.thumbDown {
+  margin: 10px;
+  width: 40px;
+  filter: invert(97%) sepia(43%) saturate(3451%) hue-rotate(317deg)
+    brightness(101%) contrast(95%);
 }

@@ -9,8 +9,8 @@ import { LoginRegister } from "./subpages/LoginRegister";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
-import up from "./img/up.png";
-import down from "./img/down.png";
+import up from "./img/up.svg";
+import down from "./img/down.svg";
 import s from "./App.module.css";
 
 function App() {
@@ -50,26 +50,30 @@ function App() {
 
   const renderKwik = () =>
     kwikArray.map((KwikElement) => (
-      <div className={s.displayMeme} key={KwikElement.id}>
-        <div className={s.titleName}>{KwikElement.data.title}</div>
+      <>
+        <div className={s.displayMeme} key={KwikElement.id}>
+          <div className={s.titleName}>{KwikElement.data.title}</div>
 
-        <img className={s.image} src={KwikElement.data.url} />
-        <div className={s.tagName}>{KwikElement.data.nameTag}</div>
-        <p className={s.votesNumber}>Ilość głosów: {KwikElement.data.votes}</p>
-        <div className={s.likes}>
-          <img
-            style={{ width: "30px" }}
-            src={up}
-            onClick={() => incrementVotes(KwikElement.id)}
-          ></img>
-          <img
-            style={{ width: "30px" }}
-            src={down}
-            onClick={() => decrementVotes(KwikElement.id)}
-          ></img>
+          <img className={s.image} src={KwikElement.data.url} />
+          <div className={s.tagName}>{KwikElement.data.nameTag}</div>
+          <p className={s.votesNumber}>
+            Ilość głosów: {KwikElement.data.votes}
+          </p>
+          <div className={s.likes}>
+            <img
+              className={s.thumbUp}
+              src={up}
+              onClick={() => incrementVotes(KwikElement.id)}
+            ></img>
+            <img
+              className={s.thumbDown}
+              src={down}
+              onClick={() => decrementVotes(KwikElement.id)}
+            ></img>
+          </div>
         </div>
         <hr />
-      </div>
+      </>
     ));
   console.log(kwikArray);
 
