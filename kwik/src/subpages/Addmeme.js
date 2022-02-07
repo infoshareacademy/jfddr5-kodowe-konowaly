@@ -99,7 +99,7 @@ function Addmeme({ fetchKwik }) {
             className={s.basicInput}
             type="text"
             placeholder="Tytuł"
-            value={Title}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
 
@@ -107,7 +107,7 @@ function Addmeme({ fetchKwik }) {
             className={s.basicInput}
             type="text"
             placeholder="#tagi"
-            value={NameTag}
+            value={nameTag}
             onChange={(e) => setNameTag(e.target.value)}
           />
 
