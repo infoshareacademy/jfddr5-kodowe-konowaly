@@ -54,7 +54,7 @@ function App() {
   const renderKwik = () =>
     kwikArray.map((KwikElement) => (
       <div key={KwikElement.id}>
-        <div>{KwikElement.data.Title}</div>
+        <div>{KwikElement.data.title}</div>
         <img style={{ width: "400px" }} src={KwikElement.data.URL} />
         <p>{KwikElement.data.Votes}</p>
 
