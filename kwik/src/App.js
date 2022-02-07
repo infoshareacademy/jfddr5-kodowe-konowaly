@@ -9,21 +9,18 @@ import { LoginRegister } from "./subpages/LoginRegister";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
-import up from "./img/up.png";
-import down from "./img/down.png";
+import up from "./img/up.svg";
+import down from "./img/down.svg";
+import s from "./App.module.css";
 
 function App() {
-
   const [kwikArray, setKwikArray] = useState([]);
-
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
     const kwikDocuments = await getDocs(kwikCollection);
 
-
     const kwikList = kwikDocuments.docs.map((doc) => ({
-
       id: doc.id,
       data: doc.data(),
     }));
@@ -39,7 +36,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes + 1,
+      votes: kwik.data.votes + 1,
     }).then(getKwik);
   };
 
@@ -47,29 +44,36 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes - 1,
+      votes: kwik.data.votes - 1,
     }).then(getKwik);
   };
 
   const renderKwik = () =>
     kwikArray.map((KwikElement) => (
-      <div key={KwikElement.id}>
-        <div>{KwikElement.data.title}</div>
-        <img style={{ width: "400px" }} src={KwikElement.data.URL} />
-        <p>{KwikElement.data.Votes}</p>
+      <>
+        <div className={s.displayMeme} key={KwikElement.id}>
+          <div className={s.titleName}>{KwikElement.data.title}</div>
 
-        <img
-          style={{ width: "30px" }}
-          src={up}
-          onClick={() => incrementVotes(KwikElement.id)}
-        ></img>
-        <img
-          style={{ width: "30px" }}
-          src={down}
-          onClick={() => decrementVotes(KwikElement.id)}
-        ></img>
+          <img className={s.image} src={KwikElement.data.url} />
+          <div className={s.tagName}>{KwikElement.data.nameTag}</div>
+          <p className={s.votesNumber}>
+            Ilość głosów: {KwikElement.data.votes}
+          </p>
+          <div className={s.likes}>
+            <img
+              className={s.thumbUp}
+              src={up}
+              onClick={() => incrementVotes(KwikElement.id)}
+            ></img>
+            <img
+              className={s.thumbDown}
+              src={down}
+              onClick={() => decrementVotes(KwikElement.id)}
+            ></img>
+          </div>
+        </div>
         <hr />
-      </div>
+      </>
     ));
   console.log(kwikArray);
 
@@ -78,7 +82,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme />} />
+        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
         <Route path="/Top" element={<Top />} />
         <Route path="/WaitingRoom" element={<Waitingroom />} />
         <Route path="/Login" element={<LoginRegister />} />

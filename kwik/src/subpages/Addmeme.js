@@ -16,7 +16,7 @@ function Addmeme({ fetchKwik }) {
   const [kwik, setKwik] = useState("");
   const [nameTag, setNameTag] = useState("");
 
-  const addKwik = (title, nameTag, file) => {
+  const addKwik = (title, url, nameTag, file) => {
     const storage = getStorage();
 
     // Create the file metadata
@@ -70,10 +70,10 @@ function Addmeme({ fetchKwik }) {
           console.log("File available at", downloadURL);
 
           addDoc(collection(db, "Kwik"), {
-            Title: title,
-            URL: downloadURL,
-            NameTag: nameTag,
-            Votes: 0,
+            title: title,
+            url: downloadURL,
+            nameTag: nameTag,
+            votes: 0,
           }).then(fetchKwik);
 
         });
