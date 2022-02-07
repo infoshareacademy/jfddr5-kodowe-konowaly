@@ -12,6 +12,7 @@ import {
   doc,
   updateDoc,
   onSnapshot,
+  increment,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
@@ -41,7 +42,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      votes: kwik.data.votes + 1,
+      votes: increment(1),
     }).then(getKwik);
   };
 
@@ -49,7 +50,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      votes: kwik.data.votes - 1,
+      votes: increment(-1),
     }).then(getKwik);
   };
 
