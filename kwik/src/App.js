@@ -17,6 +17,7 @@ import RenderKwiks from "./components/RenderKwiks";
 function App() {
   const [kwikArray, setKwikArray] = useState([]);
   const [kwikFilteredArray, setKwikFilteredArray] = useState([]);
+  const [kwikSortedArray, setKwikSortedArray] = useState([]);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -31,8 +32,13 @@ function App() {
       return kwik.data.votes > 20;
     });
 
+    const kwikSortedList = [...kwikFilteredList].sort((a, b) => {
+      return b.data.votes - a.data.votes;
+    });
+    console.log(kwikSortedList);
     setKwikArray(kwikList);
     setKwikFilteredArray(kwikFilteredList);
+    setKwikSortedArray(kwikSortedList);
   };
 
   useEffect(() => {
@@ -64,7 +70,10 @@ function App() {
         <Route
           path="/Top"
           element={
-            <RenderKwiks kwikArray={kwikArray} changeVotes={changeVotes} />
+            <RenderKwiks
+              kwikArray={kwikSortedArray}
+              changeVotes={changeVotes}
+            />
           }
         />
         <Route
