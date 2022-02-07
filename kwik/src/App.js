@@ -15,9 +15,8 @@ import {
 } from "firebase/firestore";
 
 function App() {
-  const [kwikArray, setKwikArray] = useState([]);
-  const [kwikFilteredArray, setKwikFilteredArray] = useState([]);
-  const [kwikSortedArray, setKwikSortedArray] = useState([]);
+  const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
+  const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
 
   const getKwik = async () => {
@@ -41,10 +40,9 @@ function App() {
       return b.data.votes - a.data.votes;
     });
 
-    setKwikArray(kwikList);
-    setKwikFilteredArray(kwikFilteredList);
+    setKwikMainPageArray(kwikFilteredList);
     setKwikWaitingRoomArray(kwikWaitingRoomList);
-    setKwikSortedArray(kwikSortedList);
+    setKwikTopPageArray(kwikSortedList);
   };
 
   useEffect(() => {
@@ -52,7 +50,6 @@ function App() {
   }, []);
 
   const changeVotes = (id, number) => {
-    const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
@@ -67,7 +64,7 @@ function App() {
           path="/"
           element={
             <RenderKwiks
-              kwikArray={kwikFilteredArray}
+              kwikArray={kwikMainPageArray}
               changeVotes={changeVotes}
             />
           }
@@ -77,7 +74,7 @@ function App() {
           path="/Top"
           element={
             <RenderKwiks
-              kwikArray={kwikSortedArray}
+              kwikArray={kwikTopPageArray}
               changeVotes={changeVotes}
             />
           }
