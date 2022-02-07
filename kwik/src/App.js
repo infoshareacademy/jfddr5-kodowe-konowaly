@@ -39,7 +39,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes + 1,
+      votes: kwik.data.votes + 1,
     }).then(getKwik);
   };
 
@@ -47,7 +47,7 @@ function App() {
     const kwik = kwikArray.find((kwik) => kwik.id === id);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes - 1,
+      votes: kwik.data.votes - 1,
     }).then(getKwik);
   };
 
@@ -55,8 +55,9 @@ function App() {
     kwikArray.map((KwikElement) => (
       <div key={KwikElement.id}>
         <div>{KwikElement.data.title}</div>
-        <img style={{ width: "400px" }} src={KwikElement.data.URL} />
-        <p>{KwikElement.data.Votes}</p>
+        <div>{KwikElement.data.nameTag}</div>
+        <img style={{ width: "400px" }} src={KwikElement.data.url} />
+        <p>{KwikElement.data.votes}</p>
 
         <img
           style={{ width: "30px" }}
@@ -78,7 +79,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme />} />
+        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik}/>} />
         <Route path="/Top" element={<Top />} />
         <Route path="/WaitingRoom" element={<Waitingroom />} />
         <Route path="/Login" element={<LoginRegister />} />
