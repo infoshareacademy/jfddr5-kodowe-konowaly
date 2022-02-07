@@ -1,7 +1,7 @@
 import up from "../img/up.png";
 import down from "../img/down.png";
 
-const RenderKwik = (props) => {
+const RenderKwiks = (props) => {
   console.log(props.kwikArray);
   return (
     <div>
@@ -13,12 +13,12 @@ const RenderKwik = (props) => {
           <img
             style={{ width: "30px" }}
             src={up}
-            // onClick={() => incrementVotes(kwik.id)}
+            onClick={() => props.changeVotes(kwik.id, 1)}
           ></img>
           <img
             style={{ width: "30px" }}
             src={down}
-            // onClick={() => decrementVotes(kwikElement.id)}
+            onClick={() => props.changeVotes(kwik.id, -1)}
           ></img>
         </div>
       ))}
@@ -26,4 +26,4 @@ const RenderKwik = (props) => {
   );
 };
 
-export default RenderKwik;
+export default RenderKwiks;
