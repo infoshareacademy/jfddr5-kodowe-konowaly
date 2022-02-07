@@ -1,10 +1,7 @@
 import Nav from "./Header/nav";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainPage from "./subpages/MainPage";
 import Addmeme from "./subpages/Addmeme";
-import Top from "./subpages/Top";
-import Waitingroom from "./subpages/Waitingroom";
 import { LoginRegister } from "./subpages/LoginRegister";
 import {
   collection,
@@ -19,6 +16,7 @@ import RenderKwiks from "./components/RenderKwiks";
 
 function App() {
   const [kwikArray, setKwikArray] = useState([]);
+  const [kwikFilteredArray, setKwikFilteredArray] = useState([]);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -29,7 +27,12 @@ function App() {
       data: doc.data(),
     }));
 
+    const kwikFilteredList = kwikList.filter((kwik) => {
+      return kwik.data.votes > 20;
+    });
+
     setKwikArray(kwikList);
+    setKwikFilteredArray(kwikFilteredList);
   };
 
   useEffect(() => {
@@ -48,17 +51,31 @@ function App() {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/"
+          element={
+            <RenderKwiks
+              kwikArray={kwikFilteredArray}
+              changeVotes={changeVotes}
+            />
+          }
+        />
         <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
         <Route
           path="/Top"
-          element={<Top kwikArray={kwikArray} changeVotes={changeVotes} />}
+          element={
+            <RenderKwiks kwikArray={kwikArray} changeVotes={changeVotes} />
+          }
         />
-        <Route path="/WaitingRoom" element={<Waitingroom />} />
+        <Route
+          path="/WaitingRoom"
+          element={
+            <RenderKwiks kwikArray={kwikArray} changeVotes={changeVotes} />
+          }
+        />
         <Route path="/Login" element={<LoginRegister />} />
         <Route path="/Register" element={<LoginRegister />} />
       </Routes>
-      <RenderKwiks kwikArray={kwikArray} changeVotes={changeVotes} />
     </BrowserRouter>
   );
 }

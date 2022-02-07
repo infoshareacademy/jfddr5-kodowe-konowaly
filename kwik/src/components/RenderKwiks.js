@@ -2,7 +2,6 @@ import up from "../img/up.png";
 import down from "../img/down.png";
 
 const RenderKwiks = (props) => {
-  console.log(props.kwikArray);
   return (
     <div>
       {props.kwikArray.map((kwik) => (
