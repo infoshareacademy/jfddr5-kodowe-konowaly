@@ -18,6 +18,7 @@ function App() {
   const [kwikArray, setKwikArray] = useState([]);
   const [kwikFilteredArray, setKwikFilteredArray] = useState([]);
   const [kwikSortedArray, setKwikSortedArray] = useState([]);
+  const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -32,12 +33,17 @@ function App() {
       return kwik.data.votes > 20;
     });
 
+    const kwikWaitingRoomList = kwikList.filter((kwik) => {
+      return kwik.data.votes <= 20;
+    });
+
     const kwikSortedList = [...kwikFilteredList].sort((a, b) => {
       return b.data.votes - a.data.votes;
     });
-    console.log(kwikSortedList);
+
     setKwikArray(kwikList);
     setKwikFilteredArray(kwikFilteredList);
+    setKwikWaitingRoomArray(kwikWaitingRoomList);
     setKwikSortedArray(kwikSortedList);
   };
 
@@ -79,7 +85,10 @@ function App() {
         <Route
           path="/WaitingRoom"
           element={
-            <RenderKwiks kwikArray={kwikArray} changeVotes={changeVotes} />
+            <RenderKwiks
+              kwikArray={kwikWaitingRoomArray}
+              changeVotes={changeVotes}
+            />
           }
         />
         <Route path="/Login" element={<LoginRegister />} />
