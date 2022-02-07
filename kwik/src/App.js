@@ -11,13 +11,14 @@ import {
   getDocs,
   doc,
   updateDoc,
-  onSnapshot,
   increment,
+  onSnapshot,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import db from "./db";
-import up from "./img/up.png";
-import down from "./img/down.png";
+import up from "./img/up.png"
+import down from "./img/down.png"
+import { async } from "@firebase/util";
 
 function App() {
   const [kwikArray, setKwikArray] = useState([]);
@@ -92,3 +93,22 @@ function App() {
   );
 }
 export default App;
+
+// return onSnapshot(doc(db, "Kwik", "fh4v7j1B0au8z3YVKsEq"), (doc) => {
+//       console.log(doc.data());
+//       const newKwikArray = kwikArray.map((kwik) =>
+//         kwik.id === "fh4v7j1B0au8z3YVKsEq"
+//           ? {
+//               ...kwik,
+//               data: { ...kwik.data, votes: doc.data().votes },
+//             }
+//           : kwik
+//       );
+//       kwikArray.length && setKwikArray(newKwikArray);
+//     });
+//   };
+
+//   useEffect(() => {
+//     const unsub = getKwik();
+//     return unsub;
+//   }, []);
