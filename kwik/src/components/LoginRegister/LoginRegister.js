@@ -1,11 +1,15 @@
 import s from "./LoginRegister.module.css";
 
-export const LoginRegister = () => {
+const LoginRegister = () => {
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
-        <input className={s.basicInput} type="text" placeholder="Nazwa Użytkownika" />
+        <input
+          className={s.basicInput}
+          type="text"
+          placeholder="Nazwa Użytkownika"
+        />
         <input className={s.basicInput} type="password" placeholder="Hasło" />
         <button type="login" className={s.loginButton}>
           Zaloguj
@@ -15,9 +19,13 @@ export const LoginRegister = () => {
       </div>
       <div className={s.registerForm}>
         <h1 className={s.headings}>Rejestracja</h1>
-        <input className={s.basicInput} type="username" placeholder="Nazwa Użytkownika" />
+        <input
+          className={s.basicInput}
+          type="username"
+          placeholder="Nazwa Użytkownika"
+        />
         <input className={s.basicInput} type="email" placeholder="Email" />
-        <input className={s.basicInput}  type="password" placeholder="Hasło" />
+        <input className={s.basicInput} type="password" placeholder="Hasło" />
         <div className={s.checkbox}>
           <input type="checkbox" id="check" name="check" />
           <label for="check">
@@ -29,3 +37,5 @@ export const LoginRegister = () => {
     </div>
   );
 };
+
+export default LoginRegister;

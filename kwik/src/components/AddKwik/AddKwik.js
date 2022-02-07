@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import db from "../db";
+import db from "../../db";
 import {
   getStorage,
   ref,
@@ -8,7 +8,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-import s from "./AddMeme.module.css";
+import s from "./AddKwik.module.css";
 
 function Addmeme({ fetchKwik }) {
   const [title, setTitle] = useState("");

@@ -1,8 +1,11 @@
-import Nav from "./Header/nav";
-import React from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Addmeme from "./subpages/Addmeme";
-import { LoginRegister } from "./subpages/LoginRegister";
+import Nav from "./components/Header/nav";
+import React from "react";
+import AddKwik from "./components/AddKwik/AddKwik";
+import LoginRegister from "./components/LoginRegister/LoginRegister";
+import db from "./db";
+import RenderKwiks from "./components/RenderKwiks";
 import {
   collection,
   getDocs,
@@ -10,9 +13,6 @@ import {
   updateDoc,
   increment,
 } from "firebase/firestore";
-import { useState, useEffect } from "react";
-import db from "./db";
-import RenderKwiks from "./components/RenderKwiks";
 
 function App() {
   const [kwikArray, setKwikArray] = useState([]);
@@ -66,7 +66,7 @@ function App() {
             />
           }
         />
-        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
+        <Route path="/AddKwik" element={<AddKwik fetchKwik={getKwik} />} />
         <Route
           path="/Top"
           element={
