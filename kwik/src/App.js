@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import db from "./db";
 import up from "./img/up.png";
 import down from "./img/down.png";
+import RenderKwik from "./components/RenderKwiks";
 
 function App() {
   const [kwikArray, setKwikArray] = useState([]);
@@ -74,7 +75,6 @@ function App() {
         <hr />
       </div>
     ));
-  console.log(kwikArray);
 
   return (
     <BrowserRouter>
@@ -87,7 +87,7 @@ function App() {
         <Route path="/Login" element={<LoginRegister />} />
         <Route path="/Register" element={<LoginRegister />} />
       </Routes>
-      <div> {renderKwik()}</div>
+      <RenderKwik kwikArray={kwikArray} />
     </BrowserRouter>
   );
 }
