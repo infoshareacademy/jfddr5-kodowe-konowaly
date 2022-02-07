@@ -11,19 +11,16 @@ import { useState, useEffect } from "react";
 import db from "./db";
 import up from "./img/up.png";
 import down from "./img/down.png";
+import s from "./App.module.css";
 
 function App() {
-
   const [kwikArray, setKwikArray] = useState([]);
-
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
     const kwikDocuments = await getDocs(kwikCollection);
 
-
     const kwikList = kwikDocuments.docs.map((doc) => ({
-
       id: doc.id,
       data: doc.data(),
     }));
@@ -53,22 +50,24 @@ function App() {
 
   const renderKwik = () =>
     kwikArray.map((KwikElement) => (
-      <div key={KwikElement.id}>
-        <div>{KwikElement.data.title}</div>
-        <div>{KwikElement.data.nameTag}</div>
-        <img style={{ width: "400px" }} src={KwikElement.data.url} />
-        <p>{KwikElement.data.votes}</p>
+      <div className={s.displayMeme} key={KwikElement.id}>
+        <div className={s.titleName}>{KwikElement.data.title}</div>
 
-        <img
-          style={{ width: "30px" }}
-          src={up}
-          onClick={() => incrementVotes(KwikElement.id)}
-        ></img>
-        <img
-          style={{ width: "30px" }}
-          src={down}
-          onClick={() => decrementVotes(KwikElement.id)}
-        ></img>
+        <img className={s.image} src={KwikElement.data.url} />
+        <div className={s.tagName}>{KwikElement.data.nameTag}</div>
+        <p className={s.votesNumber}>Ilość głosów: {KwikElement.data.votes}</p>
+        <div className={s.likes}>
+          <img
+            style={{ width: "30px" }}
+            src={up}
+            onClick={() => incrementVotes(KwikElement.id)}
+          ></img>
+          <img
+            style={{ width: "30px" }}
+            src={down}
+            onClick={() => decrementVotes(KwikElement.id)}
+          ></img>
+        </div>
         <hr />
       </div>
     ));
@@ -79,7 +78,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik}/>} />
+        <Route path="/AddKwik" element={<Addmeme fetchKwik={getKwik} />} />
         <Route path="/Top" element={<Top />} />
         <Route path="/WaitingRoom" element={<Waitingroom />} />
         <Route path="/Login" element={<LoginRegister />} />

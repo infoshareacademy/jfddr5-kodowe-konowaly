@@ -1,0 +1,24 @@
+.image {
+  display: block;
+  margin: 0 auto;
+  border: 4px solid #f9c74f;
+}
+
+.titleName {
+  text-align: center;
+  font-size: 30px;
+}
+
+.tagName {
+  font-size: 20px;
+  text-align: center;
+}
+
+.votesNumber {
+  font-size: 15px;
+  text-align: center;
+}
+.likes {
+  display: flex;
+  justify-content: center;
+}
