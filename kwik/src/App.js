@@ -1,91 +1,116 @@
-import Nav from "./Header/nav";
-import React from "react";
-import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
-import MainPage from "./subpages/MainPage";
-import Addmeme from "./subpages/Addmeme";
-import Top from "./subpages/Top";
-import Waitingroom from "./subpages/Waitingroom";
-import { LoginRegister } from "./subpages/LoginRegister";
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Nav from "./components/Header/nav";
+import React from "react";
+import AddKwik from "./components/AddKwik/AddKwik";
+import LoginRegister from "./components/LoginRegister/LoginRegister";
 import db from "./db";
-import up from "./img/up.png";
-import down from "./img/down.png";
+import RenderKwiks from "./components/RenderKwiks";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  increment,
+} from "firebase/firestore";
 
 function App() {
-
-  const [kwikArray, setKwikArray] = useState([]);
-
+  const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
+  const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
+  const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
     const kwikDocuments = await getDocs(kwikCollection);
 
-
     const kwikList = kwikDocuments.docs.map((doc) => ({
-
       id: doc.id,
       data: doc.data(),
     }));
 
-    setKwikArray(kwikList);
+    const kwikFilteredList = kwikList.filter((kwik) => {
+      return kwik.data.votes > 20;
+    });
+
+    const kwikWaitingRoomList = kwikList.filter((kwik) => {
+      return kwik.data.votes <= 20;
+    });
+
+    const kwikSortedList = [...kwikFilteredList].sort((a, b) => {
+      return b.data.votes - a.data.votes;
+    });
+
+    setKwikMainPageArray(kwikFilteredList);
+    setKwikWaitingRoomArray(kwikWaitingRoomList);
+    setKwikTopPageArray(kwikSortedList);
   };
 
   useEffect(() => {
     getKwik();
   }, []);
 
-  const incrementVotes = (id) => {
-    const kwik = kwikArray.find((kwik) => kwik.id === id);
+  const changeVotes = (id, number) => {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
-      Votes: kwik.data.Votes + 1,
+      votes: increment(number),
     }).then(getKwik);
   };
-
-  const decrementVotes = (id) => {
-    const kwik = kwikArray.find((kwik) => kwik.id === id);
-    const ref = doc(db, "Kwik", id);
-    updateDoc(ref, {
-      Votes: kwik.data.Votes - 1,
-    }).then(getKwik);
-  };
-
-  const renderKwik = () =>
-    kwikArray.map((KwikElement) => (
-      <div key={KwikElement.id}>
-        <div>{KwikElement.data.title}</div>
-        <img style={{ width: "400px" }} src={KwikElement.data.URL} />
-        <p>{KwikElement.data.Votes}</p>
-
-        <img
-          style={{ width: "30px" }}
-          src={up}
-          onClick={() => incrementVotes(KwikElement.id)}
-        ></img>
-        <img
-          style={{ width: "30px" }}
-          src={down}
-          onClick={() => decrementVotes(KwikElement.id)}
-        ></img>
-        <hr />
-      </div>
-    ));
-  console.log(kwikArray);
 
   return (
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/AddKwik" element={<Addmeme />} />
-        <Route path="/Top" element={<Top />} />
-        <Route path="/WaitingRoom" element={<Waitingroom />} />
+        <Route
+          path="/"
+          element={
+            <RenderKwiks
+              kwikArray={kwikMainPageArray}
+              changeVotes={changeVotes}
+            />
+          }
+        />
+        <Route path="/AddKwik" element={<AddKwik fetchKwik={getKwik} />} />
+        <Route
+          path="/Top"
+          element={
+            <RenderKwiks
+              kwikArray={kwikTopPageArray}
+              changeVotes={changeVotes}
+            />
+          }
+        />
+        <Route
+          path="/WaitingRoom"
+          element={
+            <RenderKwiks
+              kwikArray={kwikWaitingRoomArray}
+              changeVotes={changeVotes}
+            />
+          }
+        />
         <Route path="/Login" element={<LoginRegister />} />
         <Route path="/Register" element={<LoginRegister />} />
       </Routes>
-      <div> {renderKwik()}</div>
     </BrowserRouter>
   );
 }
 export default App;
+
+// return onSnapshot(doc(db, "Kwik", "fh4v7j1B0au8z3YVKsEq"), (doc) => {
+//       console.log(doc.data());
+//       const newKwikArray = kwikArray.map((kwik) =>
+//         kwik.id === "fh4v7j1B0au8z3YVKsEq"
+//           ? {
+//               ...kwik,
+//               data: { ...kwik.data, votes: doc.data().votes },
+//             }
+//           : kwik
+//       );
+//       kwikArray.length && setKwikArray(newKwikArray);
+//     });
+//   };
+
+//   useEffect(() => {
+//     const unsub = getKwik();
+//     return unsub;
+//   }, []);
