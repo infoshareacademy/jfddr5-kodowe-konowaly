@@ -27,7 +27,6 @@ function App() {
       id: doc.id,
       data: doc.data(),
     }));
-
     const kwikFilteredList = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
     });
@@ -53,7 +52,13 @@ function App() {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
-    }).then(getKwik);
+    }).then(() => {
+      const oneKwik = kwikMainPageArray.find((kwik) => {
+        return kwik.id === id;
+      });
+      oneKwik.data.votes = oneKwik.data.votes + number;
+      setKwikMainPageArray([...kwikMainPageArray]);
+    });
   };
 
   return (
