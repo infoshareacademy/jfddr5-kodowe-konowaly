@@ -4,7 +4,7 @@ import Nav from "./components/Header/nav";
 import React from "react";
 import AddKwik from "./components/AddKwik/AddKwik";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
-import db from "./db";
+import {db} from "./db";
 import RenderKwiks from "./components/RenderKwiks";
 import {
   collection,
