@@ -4,24 +4,25 @@ import kwik from "./kwik.png";
 
 function Nav() {
   return (
-    <>
-      <div className={s.banner}>
-        <div className={s.logo}>
+    <div className={s.banner}>
+      <div className={s.logo}>
+        <div>
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
-          <NavLink to="/AddKwik" className={s.addKwik}>Dodaj kwika
-          </NavLink>
         </div>
-        <div className={s.buttons}>
-          <NavLink to="/Top">Top</NavLink>
-          <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-          <NavLink to="/Login">Logowanie</NavLink>
-          <NavLink to="/Register">Rejestracja</NavLink>
-        </div>
+        <NavLink to="/AddKwik" className={s.addKwik}>
+          Dodaj kwika
+        </NavLink>
       </div>
-      <hr></hr>
-    </>
+      <input type="checkbox" />
+      <div className={s.buttons}>
+        <NavLink to="/Top">Top</NavLink>
+        <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
+        <NavLink to="/Login">Logowanie</NavLink>
+        <NavLink to="/Register">Rejestracja</NavLink>
+      </div>
+    </div>
   );
 }
 export default Nav;
