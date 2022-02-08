@@ -3,7 +3,7 @@ import down from "../img/down.png";
 
 const RenderKwiks = (props) => {
   return (
-    <div>
+    <>
       {props.kwikArray.map((kwik) => (
         <div key={kwik.id}>
           <div>{kwik.data.title}</div>
@@ -13,15 +13,15 @@ const RenderKwiks = (props) => {
             style={{ width: "30px" }}
             src={up}
             onClick={() => props.changeVotes(kwik.id, 1)}
-          ></img>
+          />
           <img
             style={{ width: "30px" }}
             src={down}
             onClick={() => props.changeVotes(kwik.id, -1)}
-          ></img>
+          />
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
