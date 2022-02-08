@@ -1,25 +1,30 @@
-import up from "../img/up.png";
-import down from "../img/down.png";
-
+import up from "../img/up.svg";
+import down from "../img/down.svg";
+import s from "../App.module.css";
 const RenderKwiks = (props) => {
   return (
     <>
       {props.kwikArray.map((kwik) => (
-        <div key={kwik.id}>
-          <div>{kwik.data.title}</div>
-          <img style={{ width: "400px" }} src={kwik.data.url} />
-          <p>{kwik.data.votes}</p>
-          <img
-            style={{ width: "30px" }}
-            src={up}
-            onClick={() => props.changeVotes(kwik.id, 1)}
-          />
-          <img
-            style={{ width: "30px" }}
-            src={down}
-            onClick={() => props.changeVotes(kwik.id, -1)}
-          />
-        </div>
+        <>
+          <div className={s.displayMeme} key={kwik.id}>
+            <div className={s.titleName}>{kwik.data.title}</div>
+            <img className={s.image} src={kwik.data.url} />
+            <p className={s.votesNumber}>{kwik.data.votes}</p>
+            <div className={s.likes}>
+              <img
+                className={s.thumbUp}
+                src={up}
+                onClick={() => props.changeVotes(kwik.id, 1)}
+              />
+              <img
+                className={s.thumbDown}
+                src={down}
+                onClick={() => props.changeVotes(kwik.id, -1)}
+              />
+            </div>
+          </div>
+          <hr />
+        </>
       ))}
     </>
   );
