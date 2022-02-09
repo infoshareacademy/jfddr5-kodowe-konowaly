@@ -1,8 +1,12 @@
 import s from "./nav.module.css";
 import { NavLink } from "react-router-dom";
 import kwik from "./kwik.png";
+import {auth} from "../../db";
 
-function Nav() {
+import {signOut } from "firebase/auth"
+
+function Nav({ currentUser }) {
+ 
   return (
     <>
       <div className={s.banner}>
@@ -16,8 +20,14 @@ function Nav() {
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-          <NavLink to="/Login">Logowanie</NavLink>
-          <NavLink to="/Register">Rejestracja</NavLink>
+          {currentUser
+          ?
+          <button onClick={()=> signOut(auth)}>Wyloguj</button>
+        :
+        <div className={s.buttons}>
+            <NavLink to="/Login">Logowanie</NavLink>
+            <NavLink to="/Register">Rejestracja</NavLink>
+          </div>}
         </div>
       </div>
       <hr></hr>
