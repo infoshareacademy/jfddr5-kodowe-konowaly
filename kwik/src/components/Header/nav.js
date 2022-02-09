@@ -15,12 +15,17 @@ function Nav() {
           Dodaj kwika
         </NavLink>
       </div>
-      <input type="checkbox" />
-      <div className={s.buttons}>
-        <NavLink to="/Top">Top</NavLink>
-        <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-        <NavLink to="/Login">Logowanie</NavLink>
-        <NavLink to="/Register">Rejestracja</NavLink>
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <div className={s.buttons}>
+          <NavLink to="/Top">Top</NavLink>
+          <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
+          <NavLink to="/Login">Logowanie</NavLink>
+          <NavLink to="/Register">Rejestracja</NavLink>
+        </div>
       </div>
     </div>
   );
