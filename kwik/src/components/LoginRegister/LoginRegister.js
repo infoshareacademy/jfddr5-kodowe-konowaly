@@ -1,7 +1,8 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, loginUserWithEmail, auth } from "../../db";
+import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
+import {signOut } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,6 +20,7 @@ const LoginRegister = () => {
     register: registerLogin,
     handleSubmit: handleLoginSubmit,
     formState: { errors: loginErrors },
+    reset: loginFormReset,
   } = useForm();
 
   const {
@@ -33,42 +35,40 @@ const LoginRegister = () => {
   const registerUser = (values) => {
     const {name, email, password} = values
     registerUserWithEmail(name, email, password, setCurrentUser)
-    registerFormReset()
+    loginFormReset()
   }
 
   const loginUser = (values) => {
     
     const { email, password} = values
+    console.log(email, password)
     loginUserWithEmail(email, password, setCurrentUser);
+    registerFormReset()
 } 
 
-// useEffect(() => {
-//   if (currentUser) {
-//       navigate('/');
-//   }
-// }, [navigate, currentUser]);
+useEffect(() => {
+  if (auth?.currentUser) {
+      setCurrentUser(auth.currentUser)
+      navigate('/');
+  }
+}, [ auth,navigate, currentUser]);
 
 
-// useEffect(()=> {
-//   console.log(auth);
-//   if (auth?.currentUser) {
-//       setCurrentUser(auth.currentUser);
-//   }
-// }, [auth, currentUser])
+
 
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
-
+        {currentUser && <div>siema</div>}
         <form className={s.formForLogin} onSubmit={handleLoginSubmit(loginUser)}>
           <input
             className={s.basicInput}
-            name="name"
+            name="email"
             type="text"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-            {...registerLogin("name", {
+            {...registerLogin("email", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
                 value: 20,
