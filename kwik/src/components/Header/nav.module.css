@@ -68,9 +68,16 @@ input[type="checkbox"] {
 }
 
 @media only screen and (max-width: 800px) {
+  body {
+    padding-top: 100px;
+  }
+
   .banner {
     flex-direction: column;
     align-items: stretch;
+    position: fixed;
+    top: 0;
+    background-color: #f9c74f;
   }
 
   .menuToggle {
@@ -83,7 +90,7 @@ input[type="checkbox"] {
     top: 20px;
     right: 20px;
     background: red;
-    display: block;
+    display: none;
     top: -7px;
     right: -5px;
 
@@ -92,6 +99,11 @@ input[type="checkbox"] {
 
     opacity: 0;
     -webkit-touch-callout: none;
+  }
+  .toggler {
+    position: fixed;
+    top: 10px;
+    right: 10px;
   }
   .menuToggle span {
     display: block;

@@ -16,10 +16,13 @@ function Nav() {
         </NavLink>
       </div>
       <div className={s.menuToggle}>
-        <input type="checkbox" />
-        <span></span>
-        <span></span>
-        <span></span>
+        <input type="checkbox" id="toggler" />
+        <label className={s.toggler} htmlFor="toggler">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
