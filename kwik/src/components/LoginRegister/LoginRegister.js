@@ -1,23 +1,11 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
-
-const LoginRegister = () => {
-  const {
-    register: registerLogin,
-    handleSubmit: handleLoginSubmit,
-    formState: { errors: loginErrors },
-  } = useForm();
-
-  const {
-    register: registerNewUser,
-    handleSubmit: handleNewUserSubmit,
-    formState: { errors: newUserErrors },
-  } = useForm();
-
-  const onSubmit = (values) => console.log(values);
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, auth } from "../../db"
+import { registerUserWithEmail, auth } from "../../db";
 import { useNavigate } from "react-router-dom";
+
+
+
 
 
 
@@ -29,14 +17,25 @@ const LoginRegister = () => {
   const navigate = useNavigate();
 
 
+  const {
+    register: registerLogin,
+    handleSubmit: handleLoginSubmit,
+    formState: { errors: loginErrors },
+  } = useForm();
 
+  const {
+    register: registerNewUser,
+    handleSubmit: handleNewUserSubmit,
+    formState: { errors: newUserErrors },
+    reset: registerFormReset,
+  } = useForm();
 
-  const registerUser = (e) =>{
-    e.preventDefault()
+  const onSubmit = (values) => console.log(values);
+
+  const registerUser = (values) => {
+    const {name, email, password} = values
     registerUserWithEmail(name, email, password, setCurrentUser)
-    setName('');
-    setPassword('');
-    setEmail('');
+    registerFormReset()
   }
 
   return (
@@ -89,15 +88,15 @@ const LoginRegister = () => {
 
       <div className={s.registerForm}>
         <h1 className={s.headings}>Rejestracja</h1>
-        <form onSubmit={handleNewUserSubmit(onSubmit)} {registerUser}>
+        <form onSubmit={handleNewUserSubmit(registerUser)} >
           <input
             className={s.basicInput}
             type="username"
             name="name"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-            value={name}
-            onChange={(e)=>setName(e.target.value)}
+
+
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
@@ -105,13 +104,15 @@ const LoginRegister = () => {
                 message:
                   "Nazwa użytkownika może posiadać maksymalnie 20 znaków",
               },
+
             })}
+
           />
           {newUserErrors.name && (
             <p className={s.error}>{newUserErrors.name.message}</p>
           )}
           <input
-value={email} onChange={(e)=>setEmail(e.target.value)}
+
             className={s.basicInput}
             type="email"
             name="email"
@@ -124,13 +125,13 @@ value={email} onChange={(e)=>setEmail(e.target.value)}
                 message: "Nieprawidłowy adres email.",
               },
             })}
+
           />{" "}
           {newUserErrors.email && (
             <p className={s.error}>{newUserErrors.email.message}</p>
           )}
           <input
-value={password}
-onChange={()=>setPassword(e.target.value)} 
+
             className={s.basicInput}
             type="password"
             placeholder="Hasło"
@@ -142,6 +143,7 @@ onChange={()=>setPassword(e.target.value)}
                 message: "Hasło musi posiadać co najmniej 8 znaków.",
               },
             })}
+
           />
           {newUserErrors.password && (
             <p className={s.error}>{newUserErrors.password.message}</p>
@@ -158,11 +160,11 @@ onChange={()=>setPassword(e.target.value)}
             <label type="checkbox">
               Przeczytałem i akceptuję regulamin oraz politykę prywatności
             </label>
-           
+
           </div>
           {newUserErrors.checkbox && (
-              <p className={s.error}>{newUserErrors.checkbox.message}</p>
-            )}
+            <p className={s.error}>{newUserErrors.checkbox.message}</p>
+          )}
           <input
             type="submit"
             value="Zarejestruj się"
