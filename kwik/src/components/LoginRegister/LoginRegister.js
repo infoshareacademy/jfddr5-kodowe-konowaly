@@ -1,7 +1,7 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, auth } from "../../db";
+import { registerUserWithEmail, loginUserWithEmail, auth } from "../../db";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,9 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const LoginRegister = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
   const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
   const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ const LoginRegister = () => {
     reset: registerFormReset,
   } = useForm();
 
-  const onSubmit = (values) => console.log(values);
+  
 
   const registerUser = (values) => {
     const {name, email, password} = values
@@ -38,12 +36,32 @@ const LoginRegister = () => {
     registerFormReset()
   }
 
+  const loginUser = (values) => {
+    
+    const { email, password} = values
+    loginUserWithEmail(email, password, setCurrentUser);
+} 
+
+// useEffect(() => {
+//   if (currentUser) {
+//       navigate('/');
+//   }
+// }, [navigate, currentUser]);
+
+
+// useEffect(()=> {
+//   console.log(auth);
+//   if (auth?.currentUser) {
+//       setCurrentUser(auth.currentUser);
+//   }
+// }, [auth, currentUser])
+
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
 
-        <form className={s.formForLogin} onSubmit={handleLoginSubmit(onSubmit)}>
+        <form className={s.formForLogin} onSubmit={handleLoginSubmit(loginUser)}>
           <input
             className={s.basicInput}
             name="name"
