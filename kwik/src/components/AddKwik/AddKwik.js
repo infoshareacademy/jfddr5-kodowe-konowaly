@@ -1,20 +1,15 @@
-import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import {db} from "../../db";
+import { db } from "../../db";
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-
+import { useForm } from "react-hook-form";
 import s from "./AddKwik.module.css";
 
 function Addmeme({ fetchKwik }) {
-  const [title, setTitle] = useState("");
-  const [kwik, setKwik] = useState("");
-  
-
   const addKwik = (title, url, nameTag, file) => {
     const storage = getStorage();
 
@@ -79,36 +74,55 @@ function Addmeme({ fetchKwik }) {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addKwik(title, "", kwik);
-    setTitle("");
-    setKwik("");
-    
+  const {
+    register,
+    handleSubmit: handleMemeSubmit,
+    formState: { errors },
+    reset: resetMemeForm,
+  } = useForm();
+
+  const onSuccessfulValidation = (values) => {
+    const { title, file } = values;
+    const kwik = file[0];
+    addKwik(title, "", "", kwik);
+    resetMemeForm();
   };
 
   return (
     <div className={s.formForMemesAdding}>
-      <form className={s.addMemeForm} onSubmit={handleSubmit}>
+      <form
+        className={s.addMemeForm}
+        onSubmit={handleMemeSubmit(onSuccessfulValidation)}
+      >
         <h1 className={s.headings}>Dodaj Kwika</h1>
         <div className={s.titleAndtagsForm}>
           <input
             className={s.basicInput}
+            name="title"
             type="text"
             placeholder="Tytuł"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            aria-label="Tytuł"
+            {...register("title", {
+              required: { value: true, message: "Wpisz tytuł Kwika" },
+              maxLength: {
+                value: 20,
+                message: "Tytuł może posiadać maksymalnie 20 znaków",
+              },
+            })}
           />
+          {errors.title && <p className={s.error}>{errors.title.message}</p>}
 
           <input
             className={s.fileInput}
             type="file"
-            onChange={(e) => setKwik(e.target.files[0])}
+            name="file"
+            {...register("file", {
+              required: { value: true, message: "Dodaj plik" },
+            })}
           />
         </div>
-        <button className={s.publishButton} type="submit">
-          Publikuj
-        </button>
+        {errors.file && <p className={s.error}>{errors.file.message}</p>}
+        <input type="submit" value="Publikuj" className={s.publishButton} />
       </form>
     </div>
   );

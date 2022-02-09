@@ -6,10 +6,6 @@ import {signOut } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 
 
-
-
-
-
 const LoginRegister = () => {
  
   const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
@@ -113,8 +109,6 @@ useEffect(() => {
             name="name"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-
-
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
@@ -140,7 +134,7 @@ useEffect(() => {
               required: { value: true, message: "Wpisz poprawny adres email" },
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Nieprawidłowy adres email.",
+                message: "Nieprawidłowy adres email",
               },
             })}
 
@@ -149,7 +143,6 @@ useEffect(() => {
             <p className={s.error}>{newUserErrors.email.message}</p>
           )}
           <input
-
             className={s.basicInput}
             type="password"
             placeholder="Hasło"
@@ -161,7 +154,6 @@ useEffect(() => {
                 message: "Hasło musi posiadać co najmniej 8 znaków.",
               },
             })}
-
           />
           {newUserErrors.password && (
             <p className={s.error}>{newUserErrors.password.message}</p>
@@ -178,7 +170,6 @@ useEffect(() => {
             <label type="checkbox">
               Przeczytałem i akceptuję regulamin oraz politykę prywatności
             </label>
-
           </div>
           {newUserErrors.checkbox && (
             <p className={s.error}>{newUserErrors.checkbox.message}</p>
@@ -188,7 +179,6 @@ useEffect(() => {
             value="Zarejestruj się"
             className={s.registerButton}
           />
-
         </form>
       </div>
     </div>

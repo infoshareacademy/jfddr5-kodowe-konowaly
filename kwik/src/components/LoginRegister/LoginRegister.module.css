@@ -85,7 +85,8 @@ a {
   font-size: smaller;
   width: 50%;
   border: 1px solid #f94144;
-  margin: 0 auto;
+  margin: 3px auto;
+  padding: 3px 0;
   color: #f94144;
   font-weight: 400;
   background-color: #f8aeaf;
