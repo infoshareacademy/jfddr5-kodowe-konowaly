@@ -17,7 +17,6 @@ const LoginRegister = () => {
   const navigate = useNavigate();
 
 
-
   const {
     register: registerLogin,
     handleSubmit: handleLoginSubmit,
@@ -28,16 +27,15 @@ const LoginRegister = () => {
     register: registerNewUser,
     handleSubmit: handleNewUserSubmit,
     formState: { errors: newUserErrors },
+    reset: registerFormReset,
   } = useForm();
 
   const onSubmit = (values) => console.log(values);
 
-  const registerUser = (e) => {
-    e.preventDefault()
+  const registerUser = (values) => {
+    const {name, email, password} = values
     registerUserWithEmail(name, email, password, setCurrentUser)
-    setName('');
-    setPassword('');
-    setEmail('');
+    registerFormReset()
   }
 
   return (
@@ -90,16 +88,15 @@ const LoginRegister = () => {
 
       <div className={s.registerForm}>
         <h1 className={s.headings}>Rejestracja</h1>
-        <form onSubmit={handleNewUserSubmit(onSubmit), registerUser} >
+        <form onSubmit={handleNewUserSubmit(registerUser)} >
           <input
             className={s.basicInput}
             type="username"
             name="name"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            
+
+
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
@@ -107,15 +104,15 @@ const LoginRegister = () => {
                 message:
                   "Nazwa użytkownika może posiadać maksymalnie 20 znaków",
               },
-              
+
             })}
-           
+
           />
           {newUserErrors.name && (
             <p className={s.error}>{newUserErrors.name.message}</p>
           )}
           <input
-            
+
             className={s.basicInput}
             type="email"
             name="email"
@@ -128,14 +125,13 @@ const LoginRegister = () => {
                 message: "Nieprawidłowy adres email.",
               },
             })}
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)}
+
           />{" "}
           {newUserErrors.email && (
             <p className={s.error}>{newUserErrors.email.message}</p>
           )}
           <input
-           
+
             className={s.basicInput}
             type="password"
             placeholder="Hasło"
@@ -147,8 +143,7 @@ const LoginRegister = () => {
                 message: "Hasło musi posiadać co najmniej 8 znaków.",
               },
             })}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+
           />
           {newUserErrors.password && (
             <p className={s.error}>{newUserErrors.password.message}</p>
