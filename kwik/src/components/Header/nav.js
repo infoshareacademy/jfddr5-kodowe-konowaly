@@ -15,7 +15,7 @@ function Nav() {
           Dodaj kwika
         </NavLink>
       </div>
-      <div id="menuToggle">
+      <div className={s.menuToggle}>
         <input type="checkbox" />
         <span></span>
         <span></span>
