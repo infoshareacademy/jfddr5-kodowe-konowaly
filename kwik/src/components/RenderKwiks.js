@@ -30,7 +30,7 @@ const RenderKwiks = (props) => {
                   props.changeVotes(
                     kwik.id,
                     -1,
-                    props.kwikMainPageArray,
+                    props.kwikArray,
                     props.setKwikMainPageArray
                   )
                 }
