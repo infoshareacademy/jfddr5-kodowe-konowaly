@@ -1,7 +1,8 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, auth } from "../../db";
+import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
+import {signOut } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,9 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const LoginRegister = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
   const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
   const navigate = useNavigate();
 
@@ -21,6 +20,7 @@ const LoginRegister = () => {
     register: registerLogin,
     handleSubmit: handleLoginSubmit,
     formState: { errors: loginErrors },
+    reset: loginFormReset,
   } = useForm();
 
   const {
@@ -30,27 +30,45 @@ const LoginRegister = () => {
     reset: registerFormReset,
   } = useForm();
 
-  const onSubmit = (values) => console.log(values);
+  
 
   const registerUser = (values) => {
     const {name, email, password} = values
     registerUserWithEmail(name, email, password, setCurrentUser)
-    registerFormReset()
+    loginFormReset()
   }
+
+  const loginUser = (values) => {
+    
+    const { email, password} = values
+    console.log(email, password)
+    loginUserWithEmail(email, password, setCurrentUser);
+    registerFormReset()
+} 
+
+useEffect(() => {
+  if (auth?.currentUser) {
+      setCurrentUser(auth.currentUser)
+      navigate('/');
+  }
+}, [ auth,navigate, currentUser]);
+
+
+
 
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
-
-        <form className={s.formForLogin} onSubmit={handleLoginSubmit(onSubmit)}>
+        {currentUser && <div>siema</div>}
+        <form className={s.formForLogin} onSubmit={handleLoginSubmit(loginUser)}>
           <input
             className={s.basicInput}
-            name="name"
+            name="email"
             type="text"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-            {...registerLogin("name", {
+            {...registerLogin("email", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
                 value: 20,
