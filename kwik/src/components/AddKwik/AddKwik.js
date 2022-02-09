@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import db from "../../db";
+import {db} from "../../db";
 import {
   getStorage,
   ref,

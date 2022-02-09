@@ -15,6 +15,30 @@ const LoginRegister = () => {
   } = useForm();
 
   const onSubmit = (values) => console.log(values);
+import { useState, useEffect } from "react";
+import { registerUserWithEmail, auth } from "../../db"
+import { useNavigate } from "react-router-dom";
+
+
+
+const LoginRegister = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
+  const navigate = useNavigate();
+
+
+
+
+  const registerUser = (e) =>{
+    e.preventDefault()
+    registerUserWithEmail(name, email, password, setCurrentUser)
+    setName('');
+    setPassword('');
+    setEmail('');
+  }
+
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
@@ -62,15 +86,18 @@ const LoginRegister = () => {
         <a href="">Nie pamiętam hasła</a>
       </div>
 
+
       <div className={s.registerForm}>
         <h1 className={s.headings}>Rejestracja</h1>
-        <form onSubmit={handleNewUserSubmit(onSubmit)}>
+        <form onSubmit={handleNewUserSubmit(onSubmit)} {registerUser}>
           <input
             className={s.basicInput}
             type="username"
             name="name"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
@@ -84,6 +111,7 @@ const LoginRegister = () => {
             <p className={s.error}>{newUserErrors.name.message}</p>
           )}
           <input
+value={email} onChange={(e)=>setEmail(e.target.value)}
             className={s.basicInput}
             type="email"
             name="email"
@@ -101,6 +129,8 @@ const LoginRegister = () => {
             <p className={s.error}>{newUserErrors.email.message}</p>
           )}
           <input
+value={password}
+onChange={()=>setPassword(e.target.value)} 
             className={s.basicInput}
             type="password"
             placeholder="Hasło"
@@ -138,6 +168,7 @@ const LoginRegister = () => {
             value="Zarejestruj się"
             className={s.registerButton}
           />
+
         </form>
       </div>
     </div>
