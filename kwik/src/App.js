@@ -14,6 +14,8 @@ import {
   increment,
 } from "firebase/firestore";
 import {auth} from "./db";
+import Regulamin from "./Regulamin"
+import Polityka from "./Polityka";
 
 function App() {
   const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
@@ -103,6 +105,8 @@ function App() {
         />
         <Route path="/Login" element={<LoginRegister currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
         <Route path="/Register" element={<LoginRegister />} />
+        <Route path="/Regulamin" element={<Regulamin />} />
+        <Route path="/Polityka" element={<Polityka />} />
       </Routes>
     </BrowserRouter>
   );
