@@ -48,16 +48,16 @@ function App() {
     getKwik();
   }, []);
 
-  const changeVotes = (id, number) => {
+  const changeVotes = (id, number, dupa, cyce) => {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
     }).then(() => {
-      const oneKwik = kwikMainPageArray.find((kwik) => {
+      const oneKwik = dupa.find((kwik) => {
         return kwik.id === id;
       });
       oneKwik.data.votes = oneKwik.data.votes + number;
-      setKwikMainPageArray([...kwikMainPageArray]);
+      cyce([...dupa]);
     });
   };
 
@@ -71,6 +71,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikMainPageArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikMainPageArray}
             />
           }
         />
@@ -81,6 +82,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikTopPageArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikTopPageArray}
             />
           }
         />
@@ -90,6 +92,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikWaitingRoomArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikWaitingRoomArray}
             />
           }
         />

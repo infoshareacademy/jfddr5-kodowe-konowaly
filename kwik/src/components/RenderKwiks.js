@@ -14,12 +14,26 @@ const RenderKwiks = (props) => {
               <img
                 className={s.thumbUp}
                 src={up}
-                onClick={() => props.changeVotes(kwik.id, 1)}
+                onClick={() =>
+                  props.changeVotes(
+                    kwik.id,
+                    1,
+                    props.kwikArray,
+                    props.setKwikMainPageArray
+                  )
+                }
               />
               <img
                 className={s.thumbDown}
                 src={down}
-                onClick={() => props.changeVotes(kwik.id, -1)}
+                onClick={() =>
+                  props.changeVotes(
+                    kwik.id,
+                    -1,
+                    props.kwikMainPageArray,
+                    props.setKwikMainPageArray
+                  )
+                }
               />
             </div>
           </div>
