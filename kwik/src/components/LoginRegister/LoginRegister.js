@@ -1,8 +1,7 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
-import {signOut } from "firebase/auth"
+import { registerUserWithEmail, loginUserWithEmail,auth} from "../../db";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const LoginRegister = () => {
+const LoginRegister = (currentUser,setCurrentUser) => {
  
-  const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
+  
   const navigate = useNavigate();
 
 
@@ -44,14 +43,18 @@ const LoginRegister = () => {
     console.log(email, password)
     loginUserWithEmail(email, password, setCurrentUser);
     registerFormReset()
+    setCurrentUser(auth.currentUser)
 } 
 
-useEffect(() => {
-  if (auth?.currentUser) {
-      setCurrentUser(auth.currentUser)
-      navigate('/');
-  }
-}, [ auth,navigate, currentUser]);
+// useEffect(() => {
+//   if (auth?.currentUser) {
+//       setCurrentUser(auth.currentUser)
+//       navigate('/');
+//   }
+// }, [ auth,navigate, currentUser]);
+
+
+
 
 
 
@@ -60,7 +63,7 @@ useEffect(() => {
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
-        {currentUser && <div>siema</div>}
+        {currentUser && <div>siema</div> }
         <form className={s.formForLogin} onSubmit={handleLoginSubmit(loginUser)}>
           <input
             className={s.basicInput}
