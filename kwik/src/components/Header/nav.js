@@ -14,8 +14,11 @@ function Nav({ currentUser }) {
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
-          <NavLink to="/AddKwik" className={s.addKwik}>Dodaj kwika
-          </NavLink>
+          {currentUser
+          ?
+          <NavLink to="/AddKwik" className={s.addKwik}>Dodaj kwika</NavLink>
+            :
+          <NavLink to="/Login" className={s.addKwik}>Dodaj kwika</NavLink>}
         </div>
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
