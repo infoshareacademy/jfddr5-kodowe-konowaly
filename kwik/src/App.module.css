@@ -53,3 +53,8 @@
   filter: invert(97%) sepia(43%) saturate(3451%) hue-rotate(317deg)
     brightness(101%) contrast(95%);
 }
+@media only screen and (max-width: 800px) {
+  .displayMeme {
+    margin-top: 210px;
+  }
+}

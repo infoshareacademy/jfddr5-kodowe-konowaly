@@ -15,14 +15,6 @@ function Nav() {
           Dodaj kwika
         </NavLink>
       </div>
-      <div className={s.menuToggle}>
-        <input type="checkbox" id="toggler" />
-        <label className={s.toggler} htmlFor="toggler">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
@@ -30,7 +22,7 @@ function Nav() {
           <NavLink to="/Register">Rejestracja</NavLink>
         </div>
       </div>
-    </div>
+    
   );
 }
 export default Nav;

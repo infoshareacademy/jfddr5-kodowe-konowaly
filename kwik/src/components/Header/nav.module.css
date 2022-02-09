@@ -7,7 +7,6 @@
 body {
   background-color: #577590;
   padding: 0;
-  
 }
 .logo {
   display: flex;
@@ -71,18 +70,21 @@ input[type="checkbox"] {
 @media only screen and (max-width: 800px) {
   body {
     padding-top: 100px;
-    margin: 0 auto
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .banner {
-    flex-direction: column;
+    /* flex-direction: column; */
+    display: block;
     align-items: stretch;
     position: fixed;
     top: 0;
     background-color: #f9c74f;
   }
 
-  .menuToggle {
+  /* .menuToggle {
     display: block;
     position: relative;
   }
@@ -134,11 +136,11 @@ input[type="checkbox"] {
   }
   input:checked ~ .buttons {
     display: block;
-  }
+  } */
 
   .buttons {
     flex-direction: column;
-    display: none;
+    width: fit-content;
     align-content: center;
   }
   .buttons > a {
