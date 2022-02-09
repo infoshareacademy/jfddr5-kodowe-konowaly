@@ -5,10 +5,6 @@ import { registerUserWithEmail, auth } from "../../db";
 import { useNavigate } from "react-router-dom";
 
 
-
-
-
-
 const LoginRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -95,8 +91,6 @@ const LoginRegister = () => {
             name="name"
             placeholder="Nazwa Użytkownika"
             aria-label="Nazwa Użytkownika"
-
-
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
@@ -122,7 +116,7 @@ const LoginRegister = () => {
               required: { value: true, message: "Wpisz poprawny adres email" },
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Nieprawidłowy adres email.",
+                message: "Nieprawidłowy adres email",
               },
             })}
 
@@ -131,7 +125,6 @@ const LoginRegister = () => {
             <p className={s.error}>{newUserErrors.email.message}</p>
           )}
           <input
-
             className={s.basicInput}
             type="password"
             placeholder="Hasło"
@@ -143,7 +136,6 @@ const LoginRegister = () => {
                 message: "Hasło musi posiadać co najmniej 8 znaków.",
               },
             })}
-
           />
           {newUserErrors.password && (
             <p className={s.error}>{newUserErrors.password.message}</p>
@@ -160,7 +152,6 @@ const LoginRegister = () => {
             <label type="checkbox">
               Przeczytałem i akceptuję regulamin oraz politykę prywatności
             </label>
-
           </div>
           {newUserErrors.checkbox && (
             <p className={s.error}>{newUserErrors.checkbox.message}</p>
@@ -170,7 +161,6 @@ const LoginRegister = () => {
             value="Zarejestruj się"
             className={s.registerButton}
           />
-
         </form>
       </div>
     </div>
