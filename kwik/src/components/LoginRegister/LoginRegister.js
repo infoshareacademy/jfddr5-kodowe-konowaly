@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const LoginRegister = ({currentUser}) => {
@@ -162,7 +162,7 @@ const LoginRegister = ({currentUser}) => {
               })}
             />
             <label type="checkbox">
-              Przeczytałem i akceptuję regulamin oraz politykę prywatności
+              Przeczytałem i akceptuję <NavLink to="/Regulamin">regulamin</NavLink> oraz <NavLink to="/Polityka"> politykę prywatności</NavLink>
             </label>
           </div>
           {newUserErrors.checkbox && (
