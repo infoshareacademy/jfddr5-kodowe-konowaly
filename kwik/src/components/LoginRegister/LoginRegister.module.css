@@ -20,6 +20,10 @@
   background-color: #8ca5ba;
 }
 
+.formForLogin{
+  margin: 0 ;
+}
+
 a {
   font-size: medium;
   color: black;
@@ -40,10 +44,18 @@ a {
 
 .basicInput {
   width: 80%;
-  margin: 0 auto;
+  margin: 4px 0;
   padding: 15px;
   background-color: #b3c3d1;
   border: 1px solid #577590;
+
+}
+
+.basicInput:focus {
+    outline-style: none;
+    background-color: #b3c3d1;
+    color: #577590;
+    border: 2px solid #577590;
 }
 .checkbox {
   margin-top: 10px;
@@ -54,7 +66,7 @@ a {
   align-self: center;
   border-radius: 6px;
   background-color: #f9c74f;
-  margin: 7px;
+  margin: 12px;
   padding: 5px;
   border: 1px solid #577590;
 }
@@ -64,9 +76,21 @@ a {
   align-self: center;
   border-radius: 6px;
   background-color: #f9c74f;
-  margin: 7px;
+  margin-top: 20px;
   padding: 5px;
   border: 1px solid #577590;
+}
+
+.error {
+  font-size: smaller;
+  width: 50%;
+  border: 1px solid #f94144;
+  margin: 0 auto;
+  color: #f94144;
+  font-weight: 400;
+  background-color: #f8aeaf;
+  color: #D8000C;
+	
 }
 
 @media (max-width: 1080px) {
@@ -133,7 +157,16 @@ a {
     gap: 4px;
     background-color: #8ca5ba;
   }
-
+  .loginButton {
+    font-size: 12px;
+    width: 50%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: 5px;
+    border: 1px solid #577590;
+  }
   .registerForm {
     font-size: 15px;
     display: flex;
@@ -159,7 +192,7 @@ a {
   }
 
   .loginButton {
-    font-size: 15px;
+    font-size: 12px;
     width: 50%;
     align-self: center;
     border-radius: 6px;
@@ -219,7 +252,7 @@ a {
   }
 
   .loginButton {
-    font-size: 15px;
+    font-size: 12px;
     width: 50%;
     align-self: center;
     border-radius: 6px;
