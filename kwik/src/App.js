@@ -48,16 +48,16 @@ function App() {
     getKwik();
   }, []);
 
-  const changeVotes = (id, number, dupa, cyce) => {
+  const changeVotes = (id, number, arr, setArr) => {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
     }).then(() => {
-      const oneKwik = dupa.find((kwik) => {
+      const oneKwik = arr.find((kwik) => {
         return kwik.id === id;
       });
       oneKwik.data.votes = oneKwik.data.votes + number;
-      cyce([...dupa]);
+      setArr([...arr]);
     });
   };
 
