@@ -1,6 +1,6 @@
 import up from "../img/up.svg";
 import down from "../img/down.svg";
-import s from "../App.module.css";
+import s from "../RenderKwiks.module.css";
 const RenderKwiks = (props) => {
   return (
     <>
