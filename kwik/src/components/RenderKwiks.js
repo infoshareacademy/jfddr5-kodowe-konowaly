@@ -1,12 +1,13 @@
 import up from "../img/up.svg";
 import down from "../img/down.svg";
 import s from "../App.module.css";
+import { Fragment } from "react";
 const RenderKwiks = (props) => {
   return (
     <>
       {props.kwikArray.map((kwik) => (
-        <>
-          <div className={s.displayMeme} key={kwik.id}>
+        <Fragment key={kwik.id} >
+          <div className={s.displayMeme} >
             <div className={s.titleName}>{kwik.data.title}</div>
             <img className={s.image} src={kwik.data.url} />
             <p className={s.votesNumber}>{kwik.data.votes}</p>
@@ -38,7 +39,7 @@ const RenderKwiks = (props) => {
             </div>
           </div>
           <hr />
-        </>
+        </Fragment>
       ))}
     </>
   );

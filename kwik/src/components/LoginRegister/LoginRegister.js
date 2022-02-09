@@ -2,13 +2,13 @@ import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
-import {signOut } from "firebase/auth"
+
 import { useNavigate } from "react-router-dom";
 
 
-const LoginRegister = () => {
+const LoginRegister = ({currentUser}) => {
  
-  const [currentUser, setCurrentUser] = useState(auth?.currentUser || null);
+  
   const navigate = useNavigate();
 
 
@@ -30,7 +30,7 @@ const LoginRegister = () => {
 
   const registerUser = (values) => {
     const {name, email, password} = values
-    registerUserWithEmail(name, email, password, setCurrentUser)
+    registerUserWithEmail(name, email, password)
     loginFormReset()
   }
 
@@ -38,18 +38,12 @@ const LoginRegister = () => {
     
     const { email, password} = values
     console.log(email, password)
-    loginUserWithEmail(email, password, setCurrentUser);
+    loginUserWithEmail(email, password).then(() => {
+      navigate('/');
+
+    })
     registerFormReset()
 } 
-
-useEffect(() => {
-  if (auth?.currentUser) {
-      setCurrentUser(auth.currentUser)
-      navigate('/');
-  }
-}, [ auth,navigate, currentUser]);
-
-
 
 
   return (

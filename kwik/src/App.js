@@ -13,11 +13,16 @@ import {
   updateDoc,
   increment,
 } from "firebase/firestore";
+import {auth} from "./db";
 
 function App() {
   const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
   const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  auth.onAuthStateChanged(user => {
+    setCurrentUser(user);
+  })
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -63,7 +68,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Nav />
+      <Nav currentUser={currentUser}/>
       <Routes>
         <Route
           path="/"
@@ -96,7 +101,7 @@ function App() {
             />
           }
         />
-        <Route path="/Login" element={<LoginRegister />} />
+        <Route path="/Login" element={<LoginRegister currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
         <Route path="/Register" element={<LoginRegister />} />
       </Routes>
     </BrowserRouter>
