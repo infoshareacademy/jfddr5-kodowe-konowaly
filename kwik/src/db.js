@@ -24,20 +24,14 @@ const registerUserWithEmail = async (name, email, password) => {
 
   alert('Użytkownik zrejestrowany')
 
-  // await addDoc(collection(db, 'users'), {
-  //   uid: user.uid,
-  //   name,
-  //   authProvider: 'local',
-  //   email,
-  // });
   updateProfile(auth.currentUser, {
     displayName: name
   }).then(() => {
-    alert("Profil zaktualizowany")
-    // ...
+    
+  
   }).catch((error) => {
-    // An error occurred
-    // ...
+    alert("Nie udało się zalogowac")
+    
   });
 }
 
