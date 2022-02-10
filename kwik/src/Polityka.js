@@ -187,5 +187,7 @@ function Polityka() {
           </p>
         </div>
       </div>
+      </>
+  )};
 
 export default Polityka;

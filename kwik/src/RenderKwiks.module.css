@@ -13,6 +13,7 @@
 .titleName {
   text-align: center;
   font-size: 30px;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-weight: 400;
   color: black;
@@ -26,6 +27,10 @@
 }
 
 .votesNumber {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  gap: 35px;
   font-size: 15px;
   text-align: center;
   text-transform: uppercase;
