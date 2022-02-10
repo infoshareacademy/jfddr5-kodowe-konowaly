@@ -3,7 +3,7 @@ function ProfilInfo({ currentUser }) {
      
     return (
       <>
-        {currentUser===null ?"niezalogowany" :currentUser.displayName}
+        {currentUser===null ?null :currentUser.displayName}
       </>
     );
   }
