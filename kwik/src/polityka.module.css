@@ -3,20 +3,35 @@
   padding: 0;
   margin: 0;
 }
+
 .text {
-    display: flex;
-    
+    display: block;
+    box-sizing: border-box;
+    background-color: #2b3947;
+    padding: 15px;
+    justify-content: center;
+}
+.textContent {
+  display: block;
   margin: 50px auto 0;
-  max-width: 750px;
-  /* display: block;
+  max-width: 100%; 
   width: 700px;
   height: 100%;
   margin: 0 auto;
   padding-top: 200px;
-  background-color: whitesmoke; */
+  background-color: #2b3947;
+  
 }
-.text > h1 {
-    font-size: 30px;
+.span {
+    font-size: 0px;
+}
+.text h1 {
+  font-size: 30px;
+  color: #d1d2d4;
+}
+.text h2 {
+  font-size: 17px;
+  color: #d1d2d4;
 }
 .p {
   display: block;
@@ -26,7 +41,7 @@
   margin-inline-end: 0px;
 }
 .text p {
-  font-size: 15px;
+  font-size: px;
   line-height: 1.67;
   color: #a7a8aa;
   margin-bottom: 24px;
