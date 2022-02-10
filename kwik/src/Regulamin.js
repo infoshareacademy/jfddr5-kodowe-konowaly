@@ -17,7 +17,6 @@ function Regulamin() {
             praw autorskich:
           </p>
 
-
           <h2>1. Postanowienia ogólne</h2>
           <p>
             Niniejszy Regulamin określa zasady korzystania przez Użytkowników z
@@ -94,5 +93,6 @@ function Regulamin() {
       </div>
     </>
   );
+}
 
 export default Regulamin;
