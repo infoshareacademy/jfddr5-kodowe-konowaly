@@ -38,16 +38,20 @@ body {
   border-radius: 6px;
   color: rgb(49, 47, 47);
   text-decoration: none;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 .buttons > button:last-of-type {
   margin-right: 0;
 }
 .buttons > a:hover {
-  background-color: #f7bd37;
+  background-color: #f4aa00;
 }
 
-.singOut {
+.signOut {
   background-color: #f9c74f;
   border: 1px solid #f9c74f;
   box-shadow: 1px 1px 7px #f9c74f;
@@ -55,9 +59,15 @@ body {
   color: rgb(49, 47, 47);
   padding: 8px;
   cursor: pointer;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
-.singOut:hover {
-  background-color: #f7bd37;
+
+
+.signOut:hover {
+  background-color: #f4aa00;;
 }
 
 .addKwik {
@@ -70,10 +80,14 @@ body {
   border-radius: 6px;
   color: rgb(49, 47, 47);
   white-space: nowrap;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 .addKwik:hover {
-  background: #7eb554;
+  background: #74a74c;
 }
 
 hr {

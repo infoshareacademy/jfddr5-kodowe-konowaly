@@ -13,7 +13,11 @@
   text-align: center;
   font-size: 30px;
   margin-bottom: 10px;
+  font-weight: 400;
+  color: black;
+
 }
+
 
 .tagName {
   font-size: 20px;
@@ -24,6 +28,15 @@
 .votesNumber {
   font-size: 15px;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color:#f9c74f;
+  background-image: linear-gradient(to right, #90be6d, #f9c74f, #90be6d);
+}
+
+.vote {
+  font-weight: 900;
+
 }
 .likes {
   display: flex;
@@ -35,6 +48,14 @@
   filter: invert(78%) sepia(5%) saturate(5043%) hue-rotate(50deg)
     brightness(90%) contrast(86%);
   width: 40px;
+  -webkit-transition: width 0.5s ease-in;
+  -moz-transition: width 0.5s ease-in;
+  -o-transition: width 0.5s ease-in;
+  transition: width 0.5s ease-in;
+  cursor: pointer;
+}
+.thumbUp:hover {
+  width: 45px;
 }
 
 .thumbDown {
@@ -42,4 +63,12 @@
   width: 40px;
   filter: invert(97%) sepia(43%) saturate(3451%) hue-rotate(317deg)
     brightness(101%) contrast(95%);
+  cursor: pointer;
+  -webkit-transition: width 0.5s ease-in;
+  -moz-transition: width 0.5s ease-in;
+  -o-transition: width 0.5s ease-in;
+  transition: width 0.5s ease-in;
+}
+.thumbDown:hover {
+  width: 45px;
 }
