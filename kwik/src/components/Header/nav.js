@@ -2,7 +2,7 @@ import s from "./nav.module.css";
 import { NavLink } from "react-router-dom";
 import kwik from "./kwik.png";
 import {auth} from "../../db";
-
+import ProfileInfo from "./profileInfo";
 import {signOut } from "firebase/auth"
 
 function Nav({ currentUser }) {
@@ -23,6 +23,7 @@ function Nav({ currentUser }) {
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
+          <ProfileInfo currentUser={currentUser}/>
           {currentUser
           ?
           <button onClick={()=> signOut(auth)}>Wyloguj</button>
