@@ -8,9 +8,9 @@ import {signOut } from "firebase/auth"
 
 function Nav({ currentUser }) {
   return (
-    <>
-      <div className={s.banner}>
-        <div className={s.logo}>
+    <div className={s.banner}>
+      <div className={s.logo}>
+        <div className={s.logoFrame}>
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
@@ -25,6 +25,10 @@ function Nav({ currentUser }) {
             </NavLink>
           )}
         </div>
+        <NavLink to="/AddKwik" className={s.addKwik}>
+          Dodaj kwika
+        </NavLink>
+      </div>
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
@@ -38,8 +42,7 @@ function Nav({ currentUser }) {
           </div>}
         </div>
       </div>
-      <hr></hr>
-    </>
+    
   );
 }
 export default Nav;
