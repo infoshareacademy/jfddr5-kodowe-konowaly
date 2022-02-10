@@ -16,6 +16,7 @@ import {
 import { auth } from "./db";
 import Regulamin from "./Regulamin";
 import Polityka from "./Polityka";
+import ForgottenPassword from "./components/LoginRegister/ForgottenPassword";
 
 function App() {
   const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
@@ -161,6 +162,12 @@ function App() {
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
             />
+          }
+        />
+        <Route
+          path="/ForgottenPassword"
+          element={
+            <ForgottenPassword />
           }
         />
         <Route path="/Register" element={<LoginRegister />} />
