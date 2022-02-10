@@ -20,6 +20,10 @@
   background-color: #8ca5ba;
 }
 
+.formForLogin{
+  margin: 0 ;
+}
+
 a {
   font-size: medium;
   color: black;
@@ -40,10 +44,18 @@ a {
 
 .basicInput {
   width: 80%;
-  margin: 0 auto;
+  margin: 4px 0;
   padding: 15px;
   background-color: #b3c3d1;
   border: 1px solid #577590;
+
+}
+
+.basicInput:focus {
+    outline-style: none;
+    background-color: #b3c3d1;
+    color: #577590;
+    border: 2px solid #577590;
 }
 .checkbox {
   margin-top: 10px;
@@ -54,7 +66,7 @@ a {
   align-self: center;
   border-radius: 6px;
   background-color: #f9c74f;
-  margin: 7px;
+  margin: 12px;
   padding: 5px;
   border: 1px solid #577590;
 }
@@ -64,7 +76,7 @@ a {
   align-self: center;
   border-radius: 6px;
   background-color: #f9c74f;
-  margin: 7px;
+  margin-top: 20px;
   padding: 5px;
   border: 1px solid #577590;
 }
@@ -89,7 +101,16 @@ a {
     justify-items:center;
     width: 100%;
   }
-
+  .loginButton {
+    font-size: 12px;
+    width: 50%;
+    align-self: center;
+    border-radius: 6px;
+    background-color: #f9c74f;
+    margin: 7px;
+    padding: 5px;
+    border: 1px solid #577590;
+  }
   .registerForm {
     width: 100%;
   }

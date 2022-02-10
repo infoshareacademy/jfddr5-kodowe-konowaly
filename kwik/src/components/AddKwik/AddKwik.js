@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import db from "../../db";
+import {db} from "../../db";
 import {
   getStorage,
   ref,
@@ -13,7 +13,7 @@ import s from "./AddKwik.module.css";
 function Addmeme({ fetchKwik }) {
   const [title, setTitle] = useState("");
   const [kwik, setKwik] = useState("");
-  const [nameTag, setNameTag] = useState("");
+  
 
   const addKwik = (title, url, nameTag, file) => {
     const storage = getStorage();
@@ -81,10 +81,10 @@ function Addmeme({ fetchKwik }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addKwik(title, "", nameTag, kwik);
+    addKwik(title, "", kwik);
     setTitle("");
     setKwik("");
-    setNameTag("");
+    
   };
 
   return (
@@ -98,14 +98,6 @@ function Addmeme({ fetchKwik }) {
             placeholder="Tytuł"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          />
-
-          <input
-            className={s.basicInput}
-            type="text"
-            placeholder="#tagi"
-            value={nameTag}
-            onChange={(e) => setNameTag(e.target.value)}
           />
 
           <input

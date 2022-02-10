@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZ3XParioTR1jOG9i4DmySlXODIYWFFTM",
@@ -13,5 +14,28 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
-export default db;
+const registerUserWithEmail = async(name, email, password, callback)=>{
+  console.log("asdasd")
+const response = await createUserWithEmailAndPassword(auth, email, password);
+const user = response.user;
+alert('Użytkownik zrejestrowany')
+callback(user)
+
+await addDoc(collection(auth, 'users'), {
+  uid: user.uid,
+  name,
+  authProvider: 'local',
+  email,
+});
+}
+
+const loginUserWithEmail = async (email, password, callback) => {
+  await signInWithEmailAndPassword(auth, email, password)
+      .then(response => {
+          console.log(response);
+          callback(response);
+      });
+};
+export { db, auth, registerUserWithEmail, loginUserWithEmail };

@@ -4,7 +4,7 @@ import Nav from "./components/Header/nav";
 import React from "react";
 import AddKwik from "./components/AddKwik/AddKwik";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
-import db from "./db";
+import {db} from "./db";
 import RenderKwiks from "./components/RenderKwiks";
 import {
   collection,
@@ -27,7 +27,6 @@ function App() {
       id: doc.id,
       data: doc.data(),
     }));
-
     const kwikFilteredList = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
     });
@@ -49,11 +48,17 @@ function App() {
     getKwik();
   }, []);
 
-  const changeVotes = (id, number) => {
+  const changeVotes = (id, number, arr, setArr) => {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
-    }).then(getKwik);
+    }).then(() => {
+      const oneKwik = arr.find((kwik) => {
+        return kwik.id === id;
+      });
+      oneKwik.data.votes = oneKwik.data.votes + number;
+      setArr([...arr]);
+    });
   };
 
   return (
@@ -66,6 +71,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikMainPageArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikMainPageArray}
             />
           }
         />
@@ -76,6 +82,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikTopPageArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikTopPageArray}
             />
           }
         />
@@ -85,6 +92,7 @@ function App() {
             <RenderKwiks
               kwikArray={kwikWaitingRoomArray}
               changeVotes={changeVotes}
+              setKwikMainPageArray={setKwikWaitingRoomArray}
             />
           }
         />
