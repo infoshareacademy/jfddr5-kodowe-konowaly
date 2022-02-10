@@ -20,8 +20,8 @@
   background-color: #8ca5ba;
 }
 
-.formForLogin{
-  margin: 0 ;
+.formForLogin {
+  margin: 0;
 }
 
 a {
@@ -48,14 +48,13 @@ a {
   padding: 15px;
   background-color: #b3c3d1;
   border: 1px solid #577590;
-
 }
 
 .basicInput:focus {
-    outline-style: none;
-    background-color: #b3c3d1;
-    color: #577590;
-    border: 2px solid #577590;
+  outline-style: none;
+  background-color: #b3c3d1;
+  color: #577590;
+  border: 2px solid #577590;
 }
 .checkbox {
   margin-top: 10px;
@@ -69,6 +68,14 @@ a {
   margin: 12px;
   padding: 5px;
   border: 1px solid #577590;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  cursor: pointer;
+}
+.registerButton:hover {
+  background-color: #f4aa00;
 }
 
 .loginButton {
@@ -79,6 +86,15 @@ a {
   margin-top: 20px;
   padding: 5px;
   border: 1px solid #577590;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #f4aa00;
 }
 
 .error {
@@ -90,73 +106,28 @@ a {
   color: #f94144;
   font-weight: 400;
   background-color: #f8aeaf;
-  color: #D8000C;
-	
+  color: #d8000c;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 800px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 250px;
+    width: 100%;
+  }
+
   .loginForm {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-
-  .registerForm {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-}
-
-@media (max-width: 640px) {
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-
-  .registerForm {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-}
-
-@media (max-width: 450px) {
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
+    justify-items: center;
+    width: 100%;
   }
   .loginButton {
     font-size: 12px;
@@ -169,109 +140,6 @@ a {
     border: 1px solid #577590;
   }
   .registerForm {
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 38%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-
-  .registerButton {
-    font-size: 15px;
-    width: 70%;
-    align-self: center;
-    border-radius: 6px;
-    background-color: #f9c74f;
-    margin: 7px;
-    padding: px;
-    border: 1px solid #577590;
-  }
-
-  .loginButton {
-    font-size: 12px;
-    width: 50%;
-    align-self: center;
-    border-radius: 6px;
-    background-color: #f9c74f;
-    margin: 7px;
-    padding: 5px;
-    border: 1px solid #577590;
-  }
-  .basicInput {
-    font-size: 11px;
-    width: 80%;
-    margin: 0 auto;
-    padding: 12px;
-    background-color: #b3c3d1;
-    border: 1px solid #577590;
-  }
-  .checkbox {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
-@media (max-width: 360px) {
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 46%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-
-  .registerForm {
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
-    width: 46%;
-    text-align: center;
-    border-radius: 6px;
-    gap: 4px;
-    background-color: #8ca5ba;
-  }
-
-  .registerButton {
-    font-size: 15px;
-    width: 70%;
-    align-self: center;
-    border-radius: 6px;
-    background-color: #f9c74f;
-    margin: 7px;
-    padding: px;
-    border: 1px solid #577590;
-  }
-
-  .loginButton {
-    font-size: 12px;
-    width: 50%;
-    align-self: center;
-    border-radius: 6px;
-    background-color: #f9c74f;
-    margin: 7px;
-    padding: 5px;
-    border: 1px solid #577590;
-  }
-  .basicInput {
-    font-size: 10px;
-    width: 80%;
-    margin: 0 auto;
-    padding: 13px;
-    background-color: #b3c3d1;
-    border: 1px solid #577590;
-  }
-  .checkbox {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 100%;
   }
 }

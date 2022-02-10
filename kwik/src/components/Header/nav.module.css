@@ -6,17 +6,20 @@
 
 body {
   background-color: #577590;
+  padding: 0;
 }
 .logo {
   display: flex;
   align-items: center;
   padding: 6px;
+  vertical-align: middle;
 }
 
 .kwikLogo {
   max-width: 70%;
   height: auto;
 }
+
 .banner {
   display: flex;
   justify-content: space-between;
@@ -37,13 +40,38 @@ body {
   margin-right: 15px;
   border-radius: 6px;
   color: rgb(49, 47, 47);
-
   text-decoration: none;
-
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  text-align: center;
 }
 
 .buttons > button:last-of-type {
   margin-right: 0;
+}
+.buttons > a:hover {
+  background-color: #f4aa00;
+}
+
+.signOut {
+  background-color: #f9c74f;
+  border: 1px solid #f9c74f;
+  box-shadow: 1px 1px 7px #f9c74f;
+  border-radius: 6px;
+  color: rgb(49, 47, 47);
+  padding: 8px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+}
+
+
+.signOut:hover {
+  background-color: #f4aa00;;
 }
 
 .addKwik {
@@ -52,192 +80,86 @@ body {
   border: 1px solid #90be6d;
   padding: 8px;
   margin-left: 15px;
-  box-shadow: 1px 1px 7px #90be6d;
+  box-shadow: 1px 1px 7px #8bda4f;
   border-radius: 6px;
   color: rgb(49, 47, 47);
-
   white-space: nowrap;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+}
 
+.addKwik:hover {
+  background: #74a74c;
 }
 
 hr {
-  border: 1px solid #f9c74f;
-  box-shadow: 8px 3px 6px #f9c74f;
+  border: 0;
+  height: 1.5px;
+  background: #f9c74f;
+  background-image: linear-gradient(to right, #90be6d, #f9c74f, #90be6d);
+  color: rgb(3, 3, 3);
+
+  white-space: nowrap;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 800px) {
+  body {
+    padding-top: 100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .banner {
+    display: block;
+    align-items: stretch;
+    position: fixed;
+    top: 0;
+    margin: 0px;
+    background-color: #43aa8b;
+    width: 100%;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-bottom: 15;
+  }
+
   .kwikLogo {
-    max-width: 80%;
+    max-width: 70%;
     height: auto;
   }
-
-  * {
-    font-family: Poppins;
-    font-size: small;
-    font-weight: 400;
-  }
-
   .addKwik {
-    font-family: Poppins;
-    font-size: small;
-    background-color: #90be6d;
-    border: 9px solid #90be6d;
-    padding: 1px;
-    margin-right: 10px;
-    box-shadow: 1px 1px 7px #90be6d;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-  }
-  .banner {
-    display: flex;
-    font-size: small;
-    justify-content: space-between;
-    margin: 10px;
-    align-items: center;
-  }
+  font-family: Poppins;
+  background-color: #f94144;
+  border: 1px solid #90be6d;
+  padding: 8px;
+  margin-left: 15px;
+  box-shadow: 1px 1px 7px #8bda4f;
+  border-radius: 6px;
+  color: rgb(241, 236, 236);
 
-  .buttons > a {
-    background-color: #f9c74f;
-    border: 6px solid #f9c74f;
-    padding: 2px;
-    box-shadow: 1px 1px 7px #f9c74f;
-    margin-right: 10px;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-    text-decoration: none;
-  }
+  white-space: nowrap;
 }
-
-@media only screen and (max-width: 640px) {
-  .kwikLogo {
-    max-width: 100%;
-    height: auto;
-  }
-
-  * {
-    font-family: Poppins;
-    font-size: small;
-    font-weight: 400;
-  }
-
-  .addKwik {
-    font-family: Poppins;
-    font-size: small;
-    background-color: #90be6d;
-    border: 2px solid #90be6d;
-    padding: 1px;
-    margin-right: 10px;
-    box-shadow: 1px 1px 7px #90be6d;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-  }
-  .banner {
-    display: flex;
-    font-size: small;
-    justify-content: space-between;
-    margin: 10px;
-    align-items: center;
-  }
-
-  .buttons > a {
-    background-color: #f9c74f;
-    border: 1px solid #f9c74f;
-    padding: 2px;
-    box-shadow: 1px 1px 7px #f9c74f;
-    margin-right: 10px;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-    text-decoration: none;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .kwikLogo {
-    max-width: 100%;
-    height: auto;
-  }
-
-  * {
-    font-family: Poppins;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
-  .addKwik {
-    font-size: 10px;
-    width: 70%;
-    font-family: Poppins;
-    background-color: #90be6d;
-    border: 1px solid #90be6d;
-    padding: 1px;
-    margin-right: 10px;
-    box-shadow: 1px 1px 7px #90be6d;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-  }
-  .banner {
-    font-size: 10px;
-    display: flex;
-    font-size: small;
-    justify-content: space-between;
-    margin: 10px;
-    align-items: center;
-  }
-
-  .buttons > a {
-    background-color: #f9c74f;
-    border: 1px solid #f9c74f;
-    padding: 2px;
-    box-shadow: 1px 1px 7px #f9c74f;
-    margin-right: 10px;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-    text-decoration: none;
-    font-size: 10px;
-  }
-}
-@media only screen and (max-width: 400px) {
-  .kwikLogo {
-    max-width: 120%;
-    height: auto;
-  }
-
-  * {
-    font-family: Poppins;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
-  .addKwik {
-    font-size: 10px;
-    width: 70%;
-    font-family: Poppins;
-    background-color: #90be6d;
-    border: 1px solid #90be6d;
-    padding: 1px;
-    margin-right: 6px;
-    box-shadow: 1px 1px 7px #90be6d;
-    border-radius: 6px;
-    color: rgb(49, 47, 47);
-  }
-  .banner {
-    font-size: 10px;
-    display: flex;
-    font-size: small;
-    justify-content: space-between;
-    margin: 1px;
-    align-items: center;
-  }
-
-  .buttons > a {
-    background-color: #f9c74f;
-    border: 1px solid #f9c74f;
-    padding: px;
-    box-shadow: 1px 1px 7px #f9c74f;
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    align-content: space-around;
+    margin-left: 5px;
     margin-right: 5px;
-    border-radius: px;
+    margin-bottom: 5px;
+  }
+  .buttons > a {
+    display: block;
+    padding: 8px;
+    box-shadow: 1px 1px 7px #f9c74f;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
     color: rgb(49, 47, 47);
-    text-decoration: none;
-    font-size: 10px;
   }
 }
