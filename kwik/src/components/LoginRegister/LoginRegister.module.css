@@ -69,6 +69,14 @@ a {
   margin: 12px;
   padding: 5px;
   border: 1px solid #577590;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  cursor: pointer;
+}
+.registerButton:hover{
+  background-color: #f4aa00;
 }
 
 .loginButton {
@@ -79,6 +87,15 @@ a {
   margin-top: 20px;
   padding: 5px;
   border: 1px solid #577590;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #f4aa00;
 }
 
 .error {
