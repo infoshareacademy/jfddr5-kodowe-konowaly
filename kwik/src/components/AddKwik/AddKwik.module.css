@@ -38,9 +38,13 @@
   margin: 7px;
   padding: 5px;
   border: 1px solid #577590;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 .publishButton:hover {
-  background-color: #f7bd37;
+  background-color: #f4aa00;
   cursor: pointer;
 }
 
@@ -75,11 +79,15 @@
   font-size: 15px;
   font-weight: 500;
   color: rgb(49, 47, 47);
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 
 ::-webkit-file-upload-button:hover {
-  background: #7eb554;
+  background: #74a74c;
   cursor: pointer;
   border: 1px solid #577590;  
 }

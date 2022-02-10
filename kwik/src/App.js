@@ -22,9 +22,16 @@ function App() {
   const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  auth.onAuthStateChanged((user) => {
-    setCurrentUser(user);
-  });
+
+  
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(user => {
+      setCurrentUser(user);
+
+    })
+  }, [])
+
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -49,6 +56,7 @@ function App() {
     setKwikMainPageArray(kwikFilteredList);
     setKwikWaitingRoomArray(kwikWaitingRoomList);
     setKwikTopPageArray(kwikSortedList);
+    
   };
 
   useEffect(() => {

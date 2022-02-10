@@ -9,8 +9,9 @@ const RenderKwiks = (props) => {
         <Fragment key={kwik.id} >
           <div className={s.displayMeme} >
             <div className={s.titleName}>{kwik.data.title}</div>
+            
             <img className={s.image} src={kwik.data.url} />
-            <p className={s.votesNumber}>{kwik.data.votes}</p>
+            <p className={s.votesNumber}> Liczba głosów: <span className={s.vote} >{kwik.data.votes}</span></p>
             <div className={s.likes}>
               <img
                 className={s.thumbUp}
