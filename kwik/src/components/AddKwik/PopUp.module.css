@@ -1,22 +1,23 @@
 
 .box {
-    position: absolute;
+    position: fixed;
     width: 250px;
     height: 100px;
     background-color: white ;
     border: 2px solid black;
     border-radius: 4px;
-    margin: 20px auto;
-    padding: 20px;
     overflow: auto;
     background-color: #f9c74f;
+    text-align: center;
 }
 
 .closeButton {
     cursor: pointer;
     border: 1px solid black;
     border-radius: 50%;
-    position: relative;
     background-color: red;
-    margin:0 auto;
+    width: 25px;
+    height: 25px;
+    margin-left: 220px;
+    margin-top:0;
 }
