@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, addDoc, collection } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZ3XParioTR1jOG9i4DmySlXODIYWFFTM",
@@ -16,22 +17,38 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 
-const registerUserWithEmail = async(name, email, password)=>{
+const registerUserWithEmail = async (name, email, password) => {
   console.log("asdasd")
-const response = await createUserWithEmailAndPassword(auth, email, password);
-const user = response.user;
-alert('Użytkownik zrejestrowany')
+  const response = await createUserWithEmailAndPassword(auth, email, password);
+  const user = response.user;
 
-await addDoc(collection(auth, 'users'), {
-  uid: user.uid,
-  name,
-  authProvider: 'local',
-  email,
-});
+  alert('Użytkownik zrejestrowany')
+
+  // await addDoc(collection(db, 'users'), {
+  //   uid: user.uid,
+  //   name,
+  //   authProvider: 'local',
+  //   email,
+  // });
+  updateProfile(auth.currentUser, {
+    displayName: name
+  }).then(() => {
+    alert("Profil zaktualizowany")
+    // ...
+  }).catch((error) => {
+    // An error occurred
+    // ...
+  });
 }
 
+
+
+
+
+
 const loginUserWithEmail = async (email, password) => {
- return  await signInWithEmailAndPassword(auth, email, password)
-      
+  return await signInWithEmailAndPassword(auth, email, password)
+
 };
+
 export { db, auth, registerUserWithEmail, loginUserWithEmail };
