@@ -1,6 +1,7 @@
 import s from "./polityka.module.css";
 
 function Polityka() {
+
   return (
     <>
       <div className={s.text}>
@@ -186,7 +187,5 @@ function Polityka() {
           </p>
         </div>
       </div>
-    </>
-  );
-}
+
 export default Polityka;
