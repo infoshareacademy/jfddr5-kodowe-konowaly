@@ -70,6 +70,8 @@ function Addmeme({ fetchKwik }) {
             url: downloadURL,
             nameTag: nameTag,
             votes: 0,
+            votesUp: 0,
+            votesDown: 0,
           }).then(fetchKwik).then(togglePopUp);
         });
       }

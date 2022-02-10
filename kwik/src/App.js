@@ -16,22 +16,20 @@ import {
 import { auth } from "./db";
 import Regulamin from "./Regulamin";
 import Polityka from "./Polityka";
+import ForgottenPassword from "./components/LoginRegister/ForgottenPassword";
 
 function App() {
   const [kwikMainPageArray, setKwikMainPageArray] = useState([]);
   const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [blockedKwiks, setBlockedKwiks] = useState([]);
 
-  
-
-  useEffect(()=>{
-    auth.onAuthStateChanged(user => {
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-
-    })
-  }, [])
-
+    });
+  }, []);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -41,6 +39,7 @@ function App() {
       id: doc.id,
       data: doc.data(),
     }));
+
     const kwikFilteredList = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
     });
@@ -56,24 +55,69 @@ function App() {
     setKwikMainPageArray(kwikFilteredList);
     setKwikWaitingRoomArray(kwikWaitingRoomList);
     setKwikTopPageArray(kwikSortedList);
-    
   };
 
   useEffect(() => {
     getKwik();
+    setBlockedKwiks(localStorage.getItem("blockedKwiks"));
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("blockedKwiks", JSON.stringify(blockedKwiks));
+  }, [blockedKwiks]);
+
   const changeVotes = (id, number, arr, setArr) => {
+    if (blockedKwiks.includes(id)) return;
+    setBlockedKwiks((prevState) => [...prevState, id]);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
     }).then(() => {
-      const oneKwik = arr.find((kwik) => {
-        return kwik.id === id;
-      });
-      oneKwik.data.votes = oneKwik.data.votes + number;
-      setArr([...arr]);
+      setArr(
+        arr.map((kwik) =>
+          kwik.id === id
+            ? { ...kwik, data: { ...kwik.data, votes: kwik.data.votes + 1 } }
+            : kwik
+        )
+      );
     });
+
+    if (number > 0) {
+      updateDoc(ref, {
+        // votes: increment(number),
+        votesUp: increment(number),
+        // votesDown:increment(number)
+      }).then(() => {
+        setArr(
+          arr.map((kwik) =>
+            kwik.id === id
+              ? {
+                  ...kwik,
+                  data: { ...kwik.data, votesUp: kwik.data.votesUp + 1 },
+                }
+              : kwik
+          )
+        );
+      });
+    } else if (number < 0) {
+      updateDoc(ref, {
+        votesDown: increment(number),
+      }).then(() => {
+        setArr(
+          arr.map((kwik) =>
+            kwik.id === id
+              ? {
+                  ...kwik,
+                  data: {
+                    ...kwik.data,
+                    votesDown: kwik.data.votesDown + number,
+                  },
+                }
+              : kwik
+          )
+        );
+      });
+    }
   };
 
   return (
@@ -120,6 +164,12 @@ function App() {
             />
           }
         />
+        <Route
+          path="/ForgottenPassword"
+          element={
+            <ForgottenPassword />
+          }
+        />
         <Route path="/Register" element={<LoginRegister />} />
         <Route path="/Regulamin" element={<Regulamin />} />
         <Route path="/Polityka" element={<Polityka />} />
@@ -128,22 +178,3 @@ function App() {
   );
 }
 export default App;
-
-// return onSnapshot(doc(db, "Kwik", "fh4v7j1B0au8z3YVKsEq"), (doc) => {
-//       console.log(doc.data());
-//       const newKwikArray = kwikArray.map((kwik) =>
-//         kwik.id === "fh4v7j1B0au8z3YVKsEq"
-//           ? {
-//               ...kwik,
-//               data: { ...kwik.data, votes: doc.data().votes },
-//             }
-//           : kwik
-//       );
-//       kwikArray.length && setKwikArray(newKwikArray);
-//     });
-//   };
-
-//   useEffect(() => {
-//     const unsub = getKwik();
-//     return unsub;
-//   }, []);
