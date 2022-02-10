@@ -2,15 +2,15 @@ import s from "./nav.module.css";
 import { NavLink } from "react-router-dom";
 import kwik from "./kwik.png";
 
-import {auth} from "../../db";
+import { auth } from "../../db";
 import ProfileInfo from "./profileInfo";
-import {signOut } from "firebase/auth"
+import { signOut } from "firebase/auth";
 
 function Nav({ currentUser }) {
   return (
-    <div className={s.banner}>
-      <div className={s.logo}>
-        <div className={s.logoFrame}>
+    <>
+      <div className={s.banner}>
+        <div className={s.logo}>
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
@@ -20,29 +20,28 @@ function Nav({ currentUser }) {
             </NavLink>
           ) : (
             <NavLink to="/LoginRegister" className={s.addKwik}>
-
               Dodaj kwika
             </NavLink>
           )}
         </div>
-        <NavLink to="/AddKwik" className={s.addKwik}>
-          Dodaj kwika
-        </NavLink>
-      </div>
+
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-          <ProfileInfo currentUser={currentUser}/>
-          {currentUser
-          ?
-          <button className={s.signOut}  onClick={()=> signOut(auth)}>Wyloguj</button>
-        :
-        <div className={s.buttons}>
+          <ProfileInfo currentUser={currentUser} />
+          {currentUser ? (
+            <button className={s.signOut} onClick={() => signOut(auth)}>
+              Wyloguj
+            </button>
+          ) : (
+            <div className={s.buttons}>
               <NavLink to="/LoginRegister">Logowanie/Rejestracja</NavLink>
-          </div>}
+            </div>
+          )}
         </div>
       </div>
-    
+      <hr/>
+    </>
   );
 }
 export default Nav;
