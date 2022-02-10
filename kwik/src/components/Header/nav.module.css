@@ -12,6 +12,7 @@ body {
   display: flex;
   align-items: center;
   padding: 6px;
+  vertical-align: middle;
 }
 
 .kwikLogo {
@@ -41,6 +42,7 @@ body {
   color: rgb(49, 47, 47);
 
   text-decoration: none;
+  text-align: center;
 }
 
 .buttons > button:last-of-type {
@@ -53,18 +55,11 @@ body {
   border: 1px solid #90be6d;
   padding: 8px;
   margin-left: 15px;
-  box-shadow: 1px 1px 7px #90be6d;
+  box-shadow: 1px 1px 7px #8bda4f;
   border-radius: 6px;
-  color: rgb(49, 47, 47);
+  color: rgb(3, 3, 3);
 
   white-space: nowrap;
-}
-
-.menuToggle {
-  position: relative;
-}
-input[type="checkbox"] {
-  display: none;
 }
 
 @media only screen and (max-width: 800px) {
@@ -76,75 +71,56 @@ input[type="checkbox"] {
   }
 
   .banner {
-    /* flex-direction: column; */
     display: block;
     align-items: stretch;
     position: fixed;
     top: 0;
-    background-color: #f9c74f;
+    margin: 0px;
+    background-color: #43aa8b;
+    width: 100%;
   }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  /* .menuToggle {
-    display: block;
-    position: relative;
+    margin-bottom: 15;
   }
-
-  input[type="checkbox"] {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: red;
-    display: none;
-    top: -7px;
-    right: -5px;
-
-    cursor: pointer;
-    z-index: 2;
-
-    opacity: 0;
-    -webkit-touch-callout: none;
-  }
-  .toggler {
-    position: fixed;
-    top: 40px;
-    right: 10px;
-  }
-  .menuToggle span {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-
-    background: #cdcdcd;
-    border-radius: 3px;
-
-    z-index: 1;
-
-    transform-origin: 4px 0px;
-
-    transition: transform 0.5s cubic-bezier (0.77, 0.2, 0.05, 1),
-      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
-  }
-
-  .menuToggle span:first-child {
-    transform-origin: 0% 0%;
-  }
-
-  .menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-  }
-  input:checked ~ .buttons {
-    display: block;
+  /* .logoFrame {
+    display: flex;
+    justify-content: center;
   } */
+  .kwikLogo {
+    max-width: 70%;
+    height: auto;
+  }
+  .addKwik {
+  font-family: Poppins;
+  background-color: #f94144;
+  border: 1px solid #90be6d;
+  padding: 8px;
+  margin-left: 15px;
+  box-shadow: 1px 1px 7px #8bda4f;
+  border-radius: 6px;
+  color: rgb(241, 236, 236);
 
+  white-space: nowrap;
+}
   .buttons {
     flex-direction: column;
-    width: fit-content;
-    align-content: center;
+    width: 100%;
+    align-content: space-around;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
   .buttons > a {
     display: block;
-    margin: 5px 0;
+    padding: 8px;
+    box-shadow: 1px 1px 7px #f9c74f;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    color: rgb(49, 47, 47);
   }
 }
