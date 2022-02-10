@@ -6,11 +6,11 @@ function Nav() {
   return (
     <div className={s.banner}>
       <div className={s.logo}>
-        {/* <div className={s.logoFrame}> */}
+        <div className={s.logoFrame}>
           <NavLink to="/">
             <img className={s.kwikLogo} alt="logo" src={kwik}></img>
           </NavLink>
-        {/* </div> */}
+        </div>
         <NavLink to="/AddKwik" className={s.addKwik}>
           Dodaj kwika
         </NavLink>
