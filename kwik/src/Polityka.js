@@ -22,11 +22,9 @@ function Polityka() {
 
           <h2>1. Administrator danych osobowych</h2>
           <p>
-            <span lang="PL">
-              Administratorem danych serwisu kwijk.pl jest Kodowe Konowały
-              Investments Sp. z o.o. (dalej Administrator), z siedzibą przy ul.
-              Pikselskiej NaN, 01-940 Niewiadomogdzie.
-            </span>
+            Administratorem danych serwisu kwijk.pl jest Kodowe Konowały
+            Investments Sp. z o.o. (dalej Administrator), z siedzibą przy ul.
+            Pikselskiej NaN, 01-940 Niewiadomogdzie.
           </p>
 
           <h2>2. Dane osobowe</h2>
@@ -173,9 +171,8 @@ function Polityka() {
             również korzystać z plików cookie osób trzecich. Wynika to z faktu,
             że osoby trzecie udostępniają nam pewne funkcje niezbędne do
             prawidłowego funkcjonowania naszej strony internetowej. Korzystamy z
-            usług Zaufanych Partnerów, przedstawionych na liście:
-            http://cubeinvestments.pl/zaufani-partnerzy.html, którzy używają
-            plików cookie na naszej stronie internetowej. Przeglądarki
+            usług Zaufanych Partnerów, przedstawionych na liście: , którzy
+            używają plików cookie na naszej stronie internetowej. Przeglądarki
             internetowe zazwyczaj domyślnie pozwalają na zapisywanie plików
             cookie na urządzeniu użytkownika. W każdej chwili można zarządzać
             korzystaniem z plików cookie, w tym blokowaniem i usuwaniem,
