@@ -4,7 +4,7 @@ import Nav from "./components/Header/nav";
 import React from "react";
 import AddKwik from "./components/AddKwik/AddKwik";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
-import {db} from "./db";
+import { db } from "./db";
 import RenderKwiks from "./components/RenderKwiks";
 import {
   collection,
@@ -13,8 +13,8 @@ import {
   updateDoc,
   increment,
 } from "firebase/firestore";
-import {auth} from "./db";
-import Regulamin from "./Regulamin"
+import { auth } from "./db";
+import Regulamin from "./Regulamin";
 import Polityka from "./Polityka";
 
 function App() {
@@ -22,16 +22,13 @@ function App() {
   const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [blockedKwiks, setBlockedKwiks] = useState([]);
 
-  
-
-  useEffect(()=>{
-    auth.onAuthStateChanged(user => {
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-
-    })
-  }, [])
-
+    });
+  }, []);
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -42,8 +39,6 @@ function App() {
       data: doc.data(),
     }));
 
-    
-    
     const kwikFilteredList = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
     });
@@ -59,43 +54,74 @@ function App() {
     setKwikMainPageArray(kwikFilteredList);
     setKwikWaitingRoomArray(kwikWaitingRoomList);
     setKwikTopPageArray(kwikSortedList);
-    
   };
 
   useEffect(() => {
     getKwik();
+    setBlockedKwiks(localStorage.getItem("blockedKwiks"));
   }, []);
 
-  
+  useEffect(() => {
+    localStorage.setItem("blockedKwiks", JSON.stringify(blockedKwiks));
+  }, [blockedKwiks]);
 
   const changeVotes = (id, number, arr, setArr) => {
+    if (blockedKwiks.includes(id)) return;
+    setBlockedKwiks((prevState) => [...prevState, id]);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
-      }).then(() => {
-      setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votes:kwik.data.votes+1}}):kwik))
+    }).then(() => {
+      setArr(
+        arr.map((kwik) =>
+          kwik.id === id
+            ? { ...kwik, data: { ...kwik.data, votes: kwik.data.votes + 1 } }
+            : kwik
+        )
+      );
     });
 
-    if(number>0){
+    if (number > 0) {
       updateDoc(ref, {
         // votes: increment(number),
-        votesUp:increment(number),
+        votesUp: increment(number),
         // votesDown:increment(number)
       }).then(() => {
-        setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votesUp:kwik.data.votesUp+1}}):kwik))
+        setArr(
+          arr.map((kwik) =>
+            kwik.id === id
+              ? {
+                  ...kwik,
+                  data: { ...kwik.data, votesUp: kwik.data.votesUp + 1 },
+                }
+              : kwik
+          )
+        );
+      });
+    } else if (number < 0) {
+      updateDoc(ref, {
+        votesDown: increment(number),
+      }).then(() => {
+        setArr(
+          arr.map((kwik) =>
+            kwik.id === id
+              ? {
+                  ...kwik,
+                  data: {
+                    ...kwik.data,
+                    votesDown: kwik.data.votesDown + number,
+                  },
+                }
+              : kwik
+          )
+        );
       });
     }
-    else if(number<0){
-      updateDoc(ref, {
-        votesDown:increment(number),
-      }).then(() => {
-        setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votesDown:kwik.data.votesDown+number}}):kwik))
-      });}
   };
 
   return (
     <BrowserRouter>
-      <Nav currentUser={currentUser}/>
+      <Nav currentUser={currentUser} />
       <Routes>
         <Route
           path="/"
@@ -145,4 +171,3 @@ function App() {
   );
 }
 export default App;
-

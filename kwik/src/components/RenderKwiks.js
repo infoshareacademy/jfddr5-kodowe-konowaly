@@ -9,16 +9,9 @@ const RenderKwiks = (props) => {
         <Fragment key={kwik.id}>
           <div className={s.displayMeme}>
             <div className={s.titleName}>{kwik.data.title}</div>
-             <img className={s.image} src={kwik.data.url} />
+            <img className={s.image} src={kwik.data.url} />
             <p className={s.votesNumber}>{kwik.data.votesUp}up</p>
             <p className={s.votesNumber}>{-kwik.data.votesDown}down</p>
-            
-            
-            
-            
-            
-            
-            
             <div className={s.likes}>
               <img
                 className={s.thumbUp}
@@ -28,7 +21,7 @@ const RenderKwiks = (props) => {
                     kwik.id,
                     1,
                     props.kwikArray,
-                    props.setKwikMainPageArray,
+                    props.setKwikMainPageArray
                   )
                 }
               />
@@ -40,7 +33,7 @@ const RenderKwiks = (props) => {
                     kwik.id,
                     -1,
                     props.kwikArray,
-                    props.setKwikMainPageArray,
+                    props.setKwikMainPageArray
                   )
                 }
               />
