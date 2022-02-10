@@ -8,6 +8,8 @@ import {
 } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import s from "./AddKwik.module.css";
+import { useState } from "react";
+import PopUp from "./PopUp";
 
 function Addmeme({ fetchKwik }) {
   const addKwik = (title, url, nameTag, file) => {
@@ -70,11 +72,17 @@ function Addmeme({ fetchKwik }) {
             votes: 0,
             votesUp: 0,
             votesDown: 0,
-          }).then(fetchKwik);
+          }).then(fetchKwik).then(togglePopUp);
         });
       }
     );
   };
+
+  const [message, setMessage] = useState(false);
+
+  const togglePopUp = () => {
+    setMessage(!message);
+  }
 
   const {
     register,
@@ -88,6 +96,7 @@ function Addmeme({ fetchKwik }) {
     const kwik = file[0];
     addKwik(title, "", "", kwik);
     resetMemeForm();
+    setMessage(true);
   };
 
   return (
@@ -97,6 +106,17 @@ function Addmeme({ fetchKwik }) {
         onSubmit={handleMemeSubmit(onSuccessfulValidation)}
       >
         <h1 className={s.headings}>Dodaj Kwika</h1>
+        {message && 
+          <PopUp
+            handleClose={togglePopUp}
+            content={
+              <div>
+                {" "}
+                <p>Kwik został poprawie dodany!</p>
+              </div>
+            }
+          />
+        }
         <div className={s.titleAndtagsForm}>
           <input
             className={s.basicInput}
@@ -124,7 +144,7 @@ function Addmeme({ fetchKwik }) {
           />
         </div>
         {errors.file && <p className={s.error}>{errors.file.message}</p>}
-        <input type="submit" value="Publikuj" className={s.publishButton} />
+        <input type="submit" value="Publikuj" className={s.publishButton}/>
       </form>
     </div>
   );
