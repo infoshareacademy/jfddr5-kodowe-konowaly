@@ -39,6 +39,9 @@ function App() {
       id: doc.id,
       data: doc.data(),
     }));
+
+    
+    
     const kwikFilteredList = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
     });
@@ -61,17 +64,31 @@ function App() {
     getKwik();
   }, []);
 
+  
+
   const changeVotes = (id, number, arr, setArr) => {
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {
       votes: increment(number),
-    }).then(() => {
-      const oneKwik = arr.find((kwik) => {
-        return kwik.id === id;
-      });
-      oneKwik.data.votes = oneKwik.data.votes + number;
-      setArr([...arr]);
+      }).then(() => {
+      setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votes:kwik.data.votes+1}}):kwik))
     });
+
+    if(number>0){
+      updateDoc(ref, {
+        // votes: increment(number),
+        votesUp:increment(number),
+        // votesDown:increment(number)
+      }).then(() => {
+        setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votesUp:kwik.data.votesUp+1}}):kwik))
+      });
+    }
+    else if(number<0){
+      updateDoc(ref, {
+        votesDown:increment(number),
+      }).then(() => {
+        setArr(arr.map(kwik=>kwik.id===id?({...kwik, data:{...kwik.data, votesDown:kwik.data.votesDown+number}}):kwik))
+      });}
   };
 
   return (
@@ -119,21 +136,3 @@ function App() {
 }
 export default App;
 
-// return onSnapshot(doc(db, "Kwik", "fh4v7j1B0au8z3YVKsEq"), (doc) => {
-//       console.log(doc.data());
-//       const newKwikArray = kwikArray.map((kwik) =>
-//         kwik.id === "fh4v7j1B0au8z3YVKsEq"
-//           ? {
-//               ...kwik,
-//               data: { ...kwik.data, votes: doc.data().votes },
-//             }
-//           : kwik
-//       );
-//       kwikArray.length && setKwikArray(newKwikArray);
-//     });
-//   };
-
-//   useEffect(() => {
-//     const unsub = getKwik();
-//     return unsub;
-//   }, []);
