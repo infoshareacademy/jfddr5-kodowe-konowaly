@@ -46,7 +46,6 @@ const LoginRegister = ({ currentUser }) => {
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
-        {currentUser && <div>siema</div>}
         <form
           className={s.formForLogin}
           onSubmit={handleLoginSubmit(loginUser)}

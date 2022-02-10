@@ -93,6 +93,6 @@ function Regulamin() {
         </div>
       </div>
     </>
-  );
+  )};
 
 export default Regulamin;
