@@ -1,23 +1,18 @@
 import s from "./LoginRegister.module.css";
-import { useState } from 'react'
+import { useState } from "react";
 
-import {
+import { resetPassword } from "../../db";
 
-  resetPassword,
-  
-} from "../../db";
-
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ForgottenPassword = ({ currentUser }) => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    
-   
+    e.preventDefault();
+
     resetPassword(email);
     navigate("/LoginRegister");
   };
@@ -25,12 +20,9 @@ const ForgottenPassword = ({ currentUser }) => {
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
-        <h1 className={s.headings}>Przypominanie hasła</h1>
-    
-        <form
-          className={s.formForLogin}
-          onSubmit={handleSubmit}
-        >
+        <h1 className={s.headings}>Zresetuj hasło</h1>
+
+        <form className={s.formForLogin} onSubmit={handleSubmit}>
           <input
             className={s.basicInput}
             name="email"
@@ -38,11 +30,9 @@ const ForgottenPassword = ({ currentUser }) => {
             placeholder="Email"
             aria-label="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
-           
+            onChange={(e) => setEmail(e.target.value)}
           />{" "}
-        
-          <input type="submit" value="Przypomnij" className={s.loginButton} />
+          <input type="submit" value="Resetuj" className={s.loginButton} />
         </form>
       </div>
     </div>
