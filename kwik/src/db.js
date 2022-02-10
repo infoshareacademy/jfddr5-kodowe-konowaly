@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, addDoc, collection } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -16,6 +16,10 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+
+const resetPassword = (email) => {
+  sendPasswordResetEmail(auth, email)
+}
 
 const registerUserWithEmail = async (name, email, password) => {
   console.log("asdasd")
@@ -45,4 +49,4 @@ const loginUserWithEmail = async (email, password) => {
 
 };
 
-export { db, auth, registerUserWithEmail, loginUserWithEmail };
+export { db, auth, registerUserWithEmail, loginUserWithEmail, resetPassword };

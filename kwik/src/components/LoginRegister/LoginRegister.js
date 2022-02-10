@@ -1,16 +1,17 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { registerUserWithEmail, loginUserWithEmail, auth} from "../../db";
+import {
+  registerUserWithEmail,
+  loginUserWithEmail,
+  auth,
+  resetPassword,
+} from "../../db";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
-
-const LoginRegister = ({currentUser}) => {
- 
-  
+const LoginRegister = ({ currentUser }) => {
   const navigate = useNavigate();
-
 
   const {
     register: registerLogin,
@@ -26,32 +27,30 @@ const LoginRegister = ({currentUser}) => {
     reset: registerFormReset,
   } = useForm();
 
-  
-
   const registerUser = (values) => {
-    const {name, email, password} = values
-    registerUserWithEmail(name, email, password)
-    loginFormReset()
-  }
+    const { name, email, password } = values;
+    registerUserWithEmail(name, email, password);
+    loginFormReset();
+  };
 
   const loginUser = (values) => {
-    
-    const { email, password} = values
-    console.log(email, password)
+    const { email, password } = values;
+    console.log(email, password);
     loginUserWithEmail(email, password).then(() => {
-      navigate('/');
-
-    })
-    registerFormReset()
-} 
-
+      navigate("/");
+    });
+    registerFormReset();
+  };
 
   return (
     <div className={s.form}>
       <div className={s.loginForm}>
         <h1 className={s.headings}>Logowanie</h1>
         {currentUser && <div>siema</div>}
-        <form className={s.formForLogin} onSubmit={handleLoginSubmit(loginUser)}>
+        <form
+          className={s.formForLogin}
+          onSubmit={handleLoginSubmit(loginUser)}
+        >
           <input
             className={s.basicInput}
             name="email"
@@ -90,13 +89,12 @@ const LoginRegister = ({currentUser}) => {
           <input type="submit" value="Zaloguj" className={s.loginButton} />
         </form>
         <br></br>
-        <a href="">Nie pamiętam hasła</a>
+        <Link to="/ForgottenPassword">Nie pamiętam hasła</Link>
       </div>
-
 
       <div className={s.registerForm}>
         <h1 className={s.headings}>Rejestracja</h1>
-        <form onSubmit={handleNewUserSubmit(registerUser)} >
+        <form onSubmit={handleNewUserSubmit(registerUser)}>
           <input
             className={s.basicInput}
             type="username"
@@ -106,19 +104,16 @@ const LoginRegister = ({currentUser}) => {
             {...registerNewUser("name", {
               required: { value: true, message: "Wpisz nazwę użytkownika" },
               maxLength: {
-                value: 20,
+                value: 50,
                 message:
-                  "Nazwa użytkownika może posiadać maksymalnie 20 znaków",
+                  "Nazwa użytkownika może posiadać maksymalnie 50 znaków",
               },
-
             })}
-
           />
           {newUserErrors.name && (
             <p className={s.error}>{newUserErrors.name.message}</p>
           )}
           <input
-
             className={s.basicInput}
             type="email"
             name="email"
@@ -131,7 +126,6 @@ const LoginRegister = ({currentUser}) => {
                 message: "Nieprawidłowy adres email",
               },
             })}
-
           />{" "}
           {newUserErrors.email && (
             <p className={s.error}>{newUserErrors.email.message}</p>
@@ -162,7 +156,9 @@ const LoginRegister = ({currentUser}) => {
               })}
             />
             <label type="checkbox">
-              Przeczytałem i akceptuję <NavLink to="/Regulamin">regulamin</NavLink> oraz <NavLink to="/Polityka"> politykę prywatności</NavLink>
+              Przeczytałem i akceptuję{" "}
+              <NavLink to="/Regulamin">regulamin</NavLink> oraz{" "}
+              <NavLink to="/Polityka"> politykę prywatności</NavLink>
             </label>
           </div>
           {newUserErrors.checkbox && (
