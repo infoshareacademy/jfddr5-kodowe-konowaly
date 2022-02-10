@@ -4,7 +4,7 @@ import Nav from "./components/Header/nav";
 import React from "react";
 import AddKwik from "./components/AddKwik/AddKwik";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
-import {db} from "./db";
+import { db } from "./db";
 import RenderKwiks from "./components/RenderKwiks";
 import {
   collection,
@@ -13,8 +13,8 @@ import {
   updateDoc,
   increment,
 } from "firebase/firestore";
-import {auth} from "./db";
-import Regulamin from "./Regulamin"
+import { auth } from "./db";
+import Regulamin from "./Regulamin";
 import Polityka from "./Polityka";
 
 function App() {
@@ -22,9 +22,9 @@ function App() {
   const [kwikTopPageArray, setKwikTopPageArray] = useState([]);
   const [kwikWaitingRoomArray, setKwikWaitingRoomArray] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user) => {
     setCurrentUser(user);
-  })
+  });
 
   const getKwik = async () => {
     const kwikCollection = collection(db, "Kwik");
@@ -70,7 +70,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Nav currentUser={currentUser}/>
+      <Nav currentUser={currentUser} />
       <Routes>
         <Route
           path="/"
@@ -103,7 +103,15 @@ function App() {
             />
           }
         />
-        <Route path="/Login" element={<LoginRegister currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+        <Route
+          path="/LoginRegister"
+          element={
+            <LoginRegister
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
         <Route path="/Register" element={<LoginRegister />} />
         <Route path="/Regulamin" element={<Regulamin />} />
         <Route path="/Polityka" element={<Polityka />} />
