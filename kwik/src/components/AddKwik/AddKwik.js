@@ -12,7 +12,7 @@ import { useState } from "react";
 import PopUp from "./PopUp";
 
 function Addmeme({ fetchKwik }) {
-  const addKwik = (title, url, nameTag, file) => {
+  const addKwik = (title, url, file) => {
     const storage = getStorage();
 
     // Create the file metadata
@@ -68,7 +68,6 @@ function Addmeme({ fetchKwik }) {
           addDoc(collection(db, "Kwik"), {
             title: title,
             url: downloadURL,
-            nameTag: nameTag,
             votes: 0,
             votesUp: 0,
             votesDown: 0,
@@ -128,8 +127,8 @@ function Addmeme({ fetchKwik }) {
             {...register("title", {
               required: { value: true, message: "Wpisz tytuł Kwika" },
               maxLength: {
-                value: 20,
-                message: "Tytuł może posiadać maksymalnie 20 znaków",
+                value: 40,
+                message: "Tytuł może posiadać maksymalnie 40 znaków",
               },
             })}
           />

@@ -151,8 +151,8 @@ const LoginRegister = ({ currentUser }) => {
             />
             <label type="checkbox">
               Przeczytałem i akceptuję{" "}
-              <NavLink to="/Regulamin">regulamin</NavLink> oraz{" "}
-              <NavLink to="/Polityka"> politykę prywatności</NavLink>
+              <NavLink className={s.rules} to="/Regulamin">regulamin</NavLink> oraz{" "}
+              <NavLink  className={s.privacy} to="/Polityka"> politykę prywatności</NavLink>
             </label>
           </div>
           {newUserErrors.checkbox && (

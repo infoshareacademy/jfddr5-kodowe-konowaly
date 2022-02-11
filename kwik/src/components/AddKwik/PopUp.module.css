@@ -24,20 +24,22 @@
     height: 25px;
     margin-left: 220px;
     margin-top:0;
-    opacity: 0.5;
+    opacity: 0.7;
     text-align: center;
+    background-color: #90be6d;
+    cursor: pointer;
 }
 
 .closeButton:hover {
     opacity: 1;
+    background-color: #90be6d;
   }
 
   .closeButton:before, .closeButton:after {
     position: absolute;
     left: 15px;
     content: ' ';
-
-    background-color: #333;
+    background-color: #90be6d;
   }
 
   .closeButton:before {
