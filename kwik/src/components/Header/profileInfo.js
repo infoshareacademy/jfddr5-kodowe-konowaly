@@ -1,10 +1,11 @@
+import s from "./profileInfo.module.css";
 function ProfilInfo({ currentUser }) {
  
      
     return (
-      <>
-        {currentUser===null ?null :currentUser.displayName}
-      </>
+      <div className={s.user}>Zalogowany jako: <span>
+        {currentUser===null ?null :currentUser.displayName}</span>
+      </div>
     );
   }
   export default ProfilInfo;

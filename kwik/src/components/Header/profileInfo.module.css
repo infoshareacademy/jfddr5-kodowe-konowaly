@@ -1,0 +1,17 @@
+.user {
+  
+    background-color: #90be6d;
+  border: 1px solid #f9c74f;
+  padding: 8px;
+  box-shadow: 1px 1px 7px #f9c74f;
+  margin-right: 15px;
+  margin-left: 15px;
+  border-radius: 6px;
+  color: rgb(49, 47, 47);
+  text-decoration: none;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
+  text-align: center;
+}

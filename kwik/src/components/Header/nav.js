@@ -28,7 +28,6 @@ function Nav({ currentUser }) {
         <div className={s.buttons}>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
-          <ProfileInfo currentUser={currentUser} />
           {currentUser ? (
             <button className={s.signOut} onClick={() => signOut(auth)}>
               Wyloguj
@@ -37,8 +36,10 @@ function Nav({ currentUser }) {
             <div className={s.buttons}>
               <NavLink to="/LoginRegister">Logowanie/Rejestracja</NavLink>
             </div>
-          )}
+            
+          )}  <ProfileInfo currentUser={currentUser}/>
         </div>
+      
       </div>
       <hr/>
     </>
