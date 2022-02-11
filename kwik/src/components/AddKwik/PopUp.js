@@ -6,7 +6,7 @@ const PopUp = (props) => {
         <div className={s.wrapper}>
             <div className={s.box}>
               <button className={s.closeButton} onClick={props.handleClose}>
-                x
+              ✓
               </button>
               {props.content}
             </div>

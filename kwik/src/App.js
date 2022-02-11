@@ -67,7 +67,7 @@ function App() {
 
   useEffect(() => {
     getKwik();
-    setBlockedKwiks(localStorage.getItem("blockedKwiks"));
+    setBlockedKwiks(localStorage.getItem("blockedKwiks")??[]);
   }, []);
 
   useEffect(() => {
