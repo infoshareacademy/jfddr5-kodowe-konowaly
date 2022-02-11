@@ -1,6 +1,14 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .box {
-    position: fixed;
     width: 250px;
     height: 100px;
     background-color: white ;
@@ -12,12 +20,29 @@
 }
 
 .closeButton {
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 50%;
-    background-color: red;
     width: 25px;
     height: 25px;
     margin-left: 220px;
     margin-top:0;
+    opacity: 0.5;
+    text-align: center;
 }
+
+.closeButton:hover {
+    opacity: 1;
+  }
+
+  .closeButton:before, .closeButton:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+
+    background-color: #333;
+  }
+
+  .closeButton:before {
+    transform: rotate(45deg);
+  }
+  .closeButton:after {
+    transform: rotate(-45deg);
+  }
