@@ -1,11 +1,8 @@
 import s from "./LoginRegister.module.css";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
 import {
   registerUserWithEmail,
   loginUserWithEmail,
-  auth,
-  resetPassword,
 } from "../../db";
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -29,7 +26,9 @@ const LoginRegister = ({ currentUser }) => {
 
   const registerUser = (values) => {
     const { name, email, password } = values;
-    registerUserWithEmail(name, email, password);
+    registerUserWithEmail(name, email, password).then(() => {
+      navigate("/");
+    });
     loginFormReset();
   };
 
@@ -54,15 +53,11 @@ const LoginRegister = ({ currentUser }) => {
             className={s.basicInput}
             name="email"
             type="text"
-            placeholder="Nazwa Użytkownika"
-            aria-label="Nazwa Użytkownika"
+            placeholder="Email"
+            aria-label="Email"
             {...registerLogin("email", {
-              required: { value: true, message: "Wpisz nazwę użytkownika" },
-              maxLength: {
-                value: 20,
-                message:
-                  "Nazwa użytkownika może posiadać maksymalnie 20 znaków",
-              },
+              required: { value: true, message: "Wpisz Email" },
+
             })}
           />{" "}
           {loginErrors.name && (
