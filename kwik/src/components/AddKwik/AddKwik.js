@@ -72,6 +72,7 @@ function Addmeme({ fetchKwik }) {
             votes: 0,
             votesUp: 0,
             votesDown: 0,
+            date: Date.now()
           }).then(fetchKwik).then(togglePopUp);
         });
       }
