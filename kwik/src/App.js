@@ -75,7 +75,7 @@ function App() {
   }, [blockedKwiks]);
 
   const changeVotes = (id, number, arr, setArr) => {
-    if (blockedKwiks.includes(id)) return;
+    if (Array.isArray(blockedKwiks) && blockedKwiks.includes(id)) return;
     setBlockedKwiks((prevState) => [...prevState, id]);
     const ref = doc(db, "Kwik", id);
     updateDoc(ref, {

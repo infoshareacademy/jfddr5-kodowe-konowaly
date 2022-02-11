@@ -40,7 +40,7 @@ function Nav({ currentUser }) {
             
           )}  
           {currentUser &&
-          <ProfileInfo currentUser={currentUser}/>}
+          <ProfileInfo className={s.buttons} currentUser={currentUser}/>}
           
         </div>
       
