@@ -13,7 +13,7 @@ const ForgottenPassword = ({ currentUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    resetPassword(email);
+   
     navigate("/LoginRegister");
   };
 
