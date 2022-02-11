@@ -40,8 +40,12 @@ function App() {
       data: doc.data(),
     }));
 
-    const kwikFilteredList = kwikList.filter((kwik) => {
+    const kwikFilteredList1 = kwikList.filter((kwik) => {
       return kwik.data.votes > 20;
+    });
+
+    const kwikFilteredList = [...kwikFilteredList1].sort((a, b) => {
+      return b.data.date??0 - a.data.date??0;
     });
 
     const kwikWaitingRoomList1 = kwikList.filter((kwik) => {

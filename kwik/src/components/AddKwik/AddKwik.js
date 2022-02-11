@@ -113,7 +113,7 @@ function Addmeme({ fetchKwik }) {
             content={
               <div>
                 {" "}
-                <p>Kwik został poprawie dodany!</p>
+                <p>Kwik został poprawnie dodany!</p>
               </div>
             }
           />

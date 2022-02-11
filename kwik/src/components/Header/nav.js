@@ -26,6 +26,7 @@ function Nav({ currentUser }) {
         </div>
 
         <div className={s.buttons}>
+          <NavLink to="/">Strona Główna</NavLink>
           <NavLink to="/Top">Top</NavLink>
           <NavLink to="/WaitingRoom">Poczekalnia</NavLink>
           {currentUser ? (
@@ -37,7 +38,10 @@ function Nav({ currentUser }) {
               <NavLink to="/LoginRegister">Logowanie/Rejestracja</NavLink>
             </div>
             
-          )}  <ProfileInfo currentUser={currentUser}/>
+          )}  
+          {currentUser &&
+          <ProfileInfo currentUser={currentUser}/>}
+          
         </div>
       
       </div>
