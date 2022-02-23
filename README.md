@@ -5,8 +5,8 @@ https://just-kwik.web.app
 Team:
 jfddr5-kodowe-konowaly
 
-https://github.com/AniaKrasna
-https://github.com/GosiaSzymczak
-https://github.com/DamianSulej97
-https://github.com/MichalOrlikowski
-https://github.com/MichalWierzbickipl
+https://github.com/AniaKrasna <br>
+https://github.com/GosiaSzymczak <br>
+https://github.com/DamianSulej97 <br>
+https://github.com/MichalOrlikowski <br>
+https://github.com/MichalWierzbickipl <br>
